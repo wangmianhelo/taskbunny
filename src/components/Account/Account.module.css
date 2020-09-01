@@ -1,0 +1,57 @@
+
+.account__container {
+    width: 90%;
+    margin: 100px auto;
+}
+
+.account__title {
+    font-size: 2rem;
+    border-bottom: 1px solid #000000;
+    display: block;
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+.avatar {
+    width: 5rem;
+    height: 5rem;
+    background-image: url(./pic/avatar-trader.png);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    float: left;
+    margin-bottom: 3rem;
+}
+
+.myfile {
+    border: 1px solid #707070;
+    text-align: left;
+}
+
+.avatar__row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.myfile input {
+    display: none;
+}
+
+
+.first__row,
+.second__row,
+.third__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+
+input {
+    display: block;
+    margin-top: 10px;
+    margin-right: 3rem;
+}
