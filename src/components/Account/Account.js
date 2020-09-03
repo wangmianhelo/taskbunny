@@ -8,6 +8,7 @@ function Account() {
             <div className={styles.avatar__row}>
                 <div className={styles.avatar}></div>
                 <label className={styles.myfile}>Upload photo<input type="file" id="myFile" name="filename" /></label>
+                <div className={styles.myfile__text}>size no more than 2MB, png/jpeg...</div>
             </div>
             <div className={styles.first__row}>
                 <div>First name:<input type="text"/></div>
@@ -22,7 +23,7 @@ function Account() {
                 <div>ABN:<input type="text"/></div>
                 <div>Company Name:<input type="text"/></div>
             </div>
-            <button>Submit</button>
+            <button className={styles.submit}>Save</button>
         </div>
     );
 }
