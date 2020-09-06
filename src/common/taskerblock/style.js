@@ -4,7 +4,8 @@ export const TaskerWrapper = styled.a `
     position: relative;
     display: block;
     margin: 10px 7px 10px 5px;
-    width: 210px;
+    flex:none;
+    width: 300px;
     height: 250px;
     cursor:pointer;
     border: 1px solid #dcdcdc;

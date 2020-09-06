@@ -4,29 +4,35 @@ import Project from './components/project';
 import Tasker from './components/tasker';
 import hdimg from '../../statics/hdimg.jpeg';
 import cleaner from '../../statics/cleaner.jpg';
-import SwipeableViews from 'react-swipeable-views';
+import ReactSwipe from 'react-swipe';
+
+const swipeOptions = {
+    auto: 2000,
+    speed: 1000,
+    disableScroll: true,
+    continuous: true,
+}
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-        this.handleClickRight = this.handleClickRight.bind(this);
-        this.handleClickLeft = this.handleClickLeft.bind(this);
-        this.state = {
-            picAmount:1,
-            picIndex:0
-        }
-    }
+   
     render(){
+        let reactSwipeEl;
         return (
         <HomeWrapper >
             <SwipeGallery>
-             <SwipeableViews enableMouseEvents index={this.state.picIndex} onChangeIndex={this.handleChangeIndex}>
+            <ReactSwipe
+        className="carousel"
+        swipeOptions={swipeOptions}
+        ref={el => (reactSwipeEl = el)}
+      > 
             <img className='heading' src={cleaner}/>
             <img className='heading' src={hdimg}/>
-        </SwipeableViews>
+            <img className='heading' src={cleaner}/>
+            <img className='heading' src={hdimg}/>
+        </ReactSwipe>
            
-            <SwipeButtom className='left'   onClick ={this.handleClickLeft}/>  
-            <SwipeButtom ckassName='2'  onClick ={this.handleClickRight}/>
+            <SwipeButtom className='left'   onClick={() => reactSwipeEl.next()}/>  
+            <SwipeButtom ckassName='2'  onClick={() => reactSwipeEl.prev()}/>
             </SwipeGallery>
             <ProjectTitile>See what you can do</ProjectTitile>
             <Project/>
@@ -40,32 +46,9 @@ class Home extends Component {
                 </IntroPic>
             </Introduction>
             <ProjectTitile>Meet awesome Taskers</ProjectTitile>
+            
             <Tasker/>
         </HomeWrapper>)
-    }
-    handleClickLeft(){
-        if(this.state.picIndex ===1){
-            let counter = this.state.picIndex -1;
-            this.setState({
-                picIndex: counter
-            })
-        }else{
-            this.setState({
-                picIndex: 1
-            })
-        }
-    }
-    handleClickRight(){
-        if(this.state.picIndex<this.state.picAmount){
-            let counter = this.state.picIndex +1;
-            this.setState({
-                picIndex: counter
-            })
-        }else{
-            this.setState({
-                picIndex: 0
-            })
-        }
     }
 
 }

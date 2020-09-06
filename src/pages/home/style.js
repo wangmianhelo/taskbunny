@@ -72,7 +72,6 @@ export const IntroPic = styled.div `
     }
     ;
     `;
-
 export const IntroTitle = styled.div `
         margin: 30px 50px;
         font-size: 30px;
@@ -93,7 +92,7 @@ export const ProjectTitile = styled.div`
     line-height: 44px;
     font-size: 34px;
     text-align:center;
-    `;
+    `
 
 export const ProjectWrapper = styled.div`
     display: flex;
@@ -102,4 +101,13 @@ export const ProjectWrapper = styled.div`
     width: 100%;
     height: 400px;
     align-content: flex-start
-    `;
+    `
+
+export const TaskertWrapper = styled.div`
+    display: flex;
+    overflow-x : auto;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    align-content: flex-start
+    `
