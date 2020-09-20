@@ -10,7 +10,7 @@ const ProjectCard = styled.div`
   width: calc(50% - 1rem);
   float: left;
   @media(min-width: 768px) {
-    width: 25%;
+    width: calc(25% - 1rem);
   }
 `
 
