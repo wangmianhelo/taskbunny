@@ -6,7 +6,7 @@ import vector from "./images/vector.png"
 const Info = () => {
   
   return (
-    <div className="infobox">
+    <div className="clearfix infobox">
         <section className="left-info">
           <h1>Everyday life made easier</h1>
           <p>When life gets busy, you don't have to tackle it alone.</p>
