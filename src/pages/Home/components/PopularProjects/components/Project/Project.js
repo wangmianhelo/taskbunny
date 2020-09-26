@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import projectImg from "./pic/pic1.png";
 import taskImg from "./pic/task.svg";
 import starImg from "./pic/star.svg";
 
@@ -13,7 +12,7 @@ const ProjectCard = styled.div`
     margin: 0 0.9375rem 3rem;
     width: calc(25% - 1.875rem);
   }
-`
+`;
 
 const ProjectLink = styled.div`
   display: block;
@@ -26,7 +25,7 @@ const ProjectLink = styled.div`
   & a:visited {
     color: inherit;
   }
-`
+`;
 
 const ProjectImg = styled.div`
   background-image: url(${props => props.src});
@@ -38,7 +37,7 @@ const ProjectImg = styled.div`
   @media(min-width: 768px) {
     height: 11.25rem;
   }
-`
+`;
 
 const ProjectText = styled.div`
   font-family: Roboto, sans-serif;
@@ -79,7 +78,7 @@ const ProjectText = styled.div`
       margin-right: 1rem;
     }
   }
-`
+`;
 
 const Project = (props) => {
   return(
