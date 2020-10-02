@@ -14,7 +14,11 @@ import poolIcon from './components/InfoBlock/images/pool.png';
 import pipeIcon from './components/InfoBlock/images/pipe.png';
 import applianceIcon from './components/InfoBlock/images/appliance.png';
 import sweepIcon from './components/InfoBlock/images/sweep.png';
-
+import TaskCard from './components/TaskCard';
+import firstImg from './components/TaskCard/images/first_img.png';
+import secondImg from './components/TaskCard/images/second_img.png';
+import tGroup from './components/TaskCard/images/t_group.png';
+import calendar from './components/TaskCard/images/calendar.png';
 
 const DashboardBlockWrapper = styled.div `
     display : flex;
@@ -83,12 +87,13 @@ const SubTitleBox = styled.p `
     color: #000000;
     margin-left:65px;
 `
-const CardList = styled.ul `
+const TaskCardList = styled.ul `
     display:flex;
     width:100%;
     flex-direction : row;
     margin-left:63px;
-
+    margin-top:20px;
+    margin-bottom:90px;
 
 `
 
@@ -114,7 +119,66 @@ const PostTaskBtn = styled.div `
 class MyDashboard extends Component {
 
     render(){
-        const marginTop = '90px';
+        
+        const cardList_one = [
+            {
+                imgIcon : ventor,
+                text : 'From $70'
+            },
+            {
+                imgIcon : tGroup,
+                text : 'Once-off home clean'
+            },
+            {
+                imgIcon : calendar,
+                text : 'Choose a time $ day'
+            }
+        ];
+        const cardList_two = [
+            {
+                imgIcon : ventor,
+                text : 'From $70/wk'
+            },
+            {
+                imgIcon : tGroup,
+                text : 'Regular home clean'
+            },
+            {
+                imgIcon : calendar,
+                text : 'Choose your frequency'
+            }
+        ];
+
+        const anotherCardList_one = [
+            {
+                imgIcon : ventor,
+                text : 'From $70'
+            },
+            {
+                imgIcon : tGroup,
+                text : 'Once-off home clean'
+            },
+            {
+                imgIcon : '',
+                text : '2 bedroom，1 bathroom'
+            }
+        ];
+
+        const anotherCardList_two = [
+            {
+                imgIcon : ventor,
+                text : 'From $70/wk'
+            },
+            {
+                imgIcon : tGroup,
+                text : 'Regular home clean'
+            },
+            {
+                imgIcon : '',
+                text : '2 bedroom，1 bathroom'
+            }
+        ];
+
         return (
             <DashboardBlockWrapper>
                <LeftPartBox>
@@ -134,9 +198,10 @@ class MyDashboard extends Component {
                     
                     <TitleWrapper imgWidth="18px" imgSrc={ventor} infoText="Book now & consider the job done"></TitleWrapper>
                     <SubTitleBox>Arrange & pay for a top-rated Tasker in just a few clicks</SubTitleBox>
-                    <CardList>
-                        
-                    </CardList>
+                    <TaskCardList>
+                        <TaskCard type={'normal'} imgSrc={firstImg} cardContents={cardList_one}></TaskCard>
+                        <TaskCard type={'normal'} imgSrc={secondImg} cardContents={cardList_two}></TaskCard>
+                    </TaskCardList>
                     <TitleWrapper imgWidth="30px" imgSrc={radioGroup} infoText="Post a task & get offers"></TitleWrapper>
                     <SubTitleBox>Receive & review offers from Taskers who can help</SubTitleBox>
                     <InfoWrapper>
@@ -146,7 +211,11 @@ class MyDashboard extends Component {
                         <InfoBlock boxWidth="80px" width="50px" height="50px" top="0px" left="6px" imgSrc={applianceIcon} infoText="Appliance" bold="false"></InfoBlock>
                         <InfoBlock boxWidth="160px" width="50px" height="50px" top="0px" left="-4px" imgSrc={sweepIcon} infoText="Something different" bold="false"></InfoBlock>
                     </InfoWrapper>
-                    <TitleWrapper imgWidth="18px" imgSrc={ventor} infoText="Popular Instant Bookings" style={{marginTop : '90px'}}></TitleWrapper>
+                    <TitleWrapper imgWidth="18px" imgSrc={ventor} infoText="Popular Instant Bookings" marginTop='90px'></TitleWrapper>
+                    <TaskCardList>
+                        <TaskCard type={'unnormal'} imgSrc={firstImg} cardContents={anotherCardList_one}></TaskCard>
+                        <TaskCard type={'unnormal'} imgSrc={secondImg} cardContents={anotherCardList_two}></TaskCard>
+                    </TaskCardList>
                     <TitleWrapper imgWidth="0px" imgSrc={''} infoText="Can't find what you need ?"></TitleWrapper>
                     <SubTitleBox>Post a task and receive offers from Taskers on how they can help !</SubTitleBox>
                     <PostTaskBtn>Post a task & get offers</PostTaskBtn>

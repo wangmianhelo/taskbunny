@@ -26,9 +26,10 @@ class TitleWrapper extends Component{
         const imgWidth = this.props.imgWidth;
         const imgSrc = this.props.imgSrc;
         const infoText = this.props.infoText;
+        const marginTop = this.props.marginTop;
 
         return(
-            <TitleBlock>
+            <TitleBlock style={{marginTop : marginTop}}>
                 { imgSrc != '' ? 
                     <Img style={{width : imgWidth}} src={imgSrc}></Img>
                   : ''
