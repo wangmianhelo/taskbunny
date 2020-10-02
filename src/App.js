@@ -3,6 +3,7 @@ import GlobalStyle from "./globalStyles";
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import MyDashboard from "./pages/MyDashboard";
 import store from './store';
 
 
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/mydashboard" component={MyDashboard}></Route>
         </Switch>
       </BrowserRouter>
       </Provider>
