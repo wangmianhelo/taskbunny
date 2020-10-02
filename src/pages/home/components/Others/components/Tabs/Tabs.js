@@ -44,65 +44,38 @@ const Tab = styled.span`
 `;
 
 class Tabs extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: "FIXING_STUFF",
-    };
-  }
-
   render() {
-    const { activeTab } = this.state;
+    const { activeTab, handleTabClick } = this.props;
 
     return (
       <Layout>
         <Tab
           active={activeTab === "MOVING_HOME"}
-          onClick={() => {
-            this.setState({
-              activeTab: "MOVING_HOME",
-            });
-          }}
+          onClick={() => handleTabClick("MOVING_HOME")}
         >
           Moving home
         </Tab>
         <Tab
           active={activeTab === "STARTING_A_BUSINESS"}
-          onClick={() => {
-            this.setState({
-              activeTab: "STARTING_A_BUSINESS",
-            });
-          }}
+          onClick={() => handleTabClick("STARTING_A_BUSINESS")}
         >
           Starting a business
         </Tab>
         <Tab
           active={activeTab === "FIXING_STUFF"}
-          onClick={() => {
-            this.setState({
-              activeTab: "FIXING_STUFF",
-            });
-          }}
+          onClick={() => handleTabClick("FIXING_STUFF")}
         >
           Fixing stuff
         </Tab>
         <Tab
           active={activeTab === "HOSTING_A_PARTY"}
-          onClick={() => {
-            this.setState({
-              activeTab: "HOSTING_A_PARTY",
-            });
-          }}
+          onClick={() => handleTabClick("HOSTING_A_PARTY")}
         >
           Hosting a party
         </Tab>
         <Tab
           active={activeTab === "SOMETHING_DIFFERENT"}
-          onClick={() => {
-            this.setState({
-              activeTab: "SOMETHING_DIFFERENT",
-            });
-          }}
+          onClick={() => handleTabClick("SOMETHING_DIFFERENT")}
         >
           Something different
         </Tab>

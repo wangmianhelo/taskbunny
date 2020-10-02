@@ -29,14 +29,31 @@ const SectionTitle = styled.h3`
 const Wrapper = styled.section`
   background-color: #f6f8fd;
   padding: 24px 0;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.25px;
 `;
 
 class Others extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: "FIXING_STUFF",
+    };
+  }
+
   render() {
+    const { activeTab } = this.state;
     return (
       <Wrapper>
         <SectionTitle>See what others are getting done</SectionTitle>
-        <Tabs />
+        <Tabs
+          activeTab={activeTab}
+          handleTabClick={(b) => {
+            this.setState({
+              activeTab,
+            });
+          }}
+        />
         <TabDescription />
         <Tasks />
         <Button>Get Started Now</Button>

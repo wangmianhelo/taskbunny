@@ -6,6 +6,18 @@ import CardMid from "./elements/CardMid";
 import TaskDesc from "./elements/TaskDesc";
 import Price from "./elements/Price";
 import CardBottom from "./elements/CardBottom";
+import styled from "styled-components";
+import { ReactComponent as Star } from "./elements/star.svg";
+
+const TaskStar = styled.div`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  margin-right: 7px;
+`;
+
+const Text = styled.span``;
 
 const Task = () => {
   return (
@@ -18,7 +30,10 @@ const Task = () => {
           <Price>$100</Price>
         </CardMid>
         <CardBottom>
-          <span>5 stars</span>
+          <TaskStar>
+            <Star />
+          </TaskStar>
+          <Text>5 Stars</Text>
         </CardBottom>
       </CardContent>
     </TaskCard>
