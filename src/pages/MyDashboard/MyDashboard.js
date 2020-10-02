@@ -6,6 +6,15 @@ import InfoBlock from './components/InfoBlock';
 import moneyIcon from './components/InfoBlock/images/money.png';
 import easyIcon from './components/InfoBlock/images/easy.png';
 import thumbsIcon from './components/InfoBlock/images/thums_up.png';
+import TitleWrapper from './components/TitleWrapper';
+import ventor from './components/TitleWrapper/images/ventor.png';
+import radioGroup from './components/TitleWrapper/images/group_radio.png';
+import houseIcon from './components/InfoBlock/images/house.png';
+import poolIcon from './components/InfoBlock/images/pool.png';
+import pipeIcon from './components/InfoBlock/images/pipe.png';
+import applianceIcon from './components/InfoBlock/images/appliance.png';
+import sweepIcon from './components/InfoBlock/images/sweep.png';
+
 
 const DashboardBlockWrapper = styled.div `
     display : flex;
@@ -65,10 +74,47 @@ const InfoWrapper = styled.section `
     justify-content : center;
     margin-top:44px;
 `
+const SubTitleBox = styled.p `
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    margin-left:65px;
+`
+const CardList = styled.ul `
+    display:flex;
+    width:100%;
+    flex-direction : row;
+    margin-left:63px;
+
+
+`
+
+const PostTaskBtn = styled.div `
+    width:310px;
+    height:48px;
+    line-height:42px;
+    text-align:center;
+    cursor:pointer;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    border: 3px solid #000000;
+    background-color: #5EDEFC;
+    box-sizing: border-box;
+    border-radius: 90px;
+    margin-left:68px;
+    margin-top:37px;
+    margin-bottom:133px;
+`
 
 class MyDashboard extends Component {
 
     render(){
+        const marginTop = '90px';
         return (
             <DashboardBlockWrapper>
                <LeftPartBox>
@@ -86,11 +132,24 @@ class MyDashboard extends Component {
                         </InfoWrapper>
                     </AdvertisementWrapper>
                     
-                    
-
-
-
-
+                    <TitleWrapper imgWidth="18px" imgSrc={ventor} infoText="Book now & consider the job done"></TitleWrapper>
+                    <SubTitleBox>Arrange & pay for a top-rated Tasker in just a few clicks</SubTitleBox>
+                    <CardList>
+                        
+                    </CardList>
+                    <TitleWrapper imgWidth="30px" imgSrc={radioGroup} infoText="Post a task & get offers"></TitleWrapper>
+                    <SubTitleBox>Receive & review offers from Taskers who can help</SubTitleBox>
+                    <InfoWrapper>
+                        <InfoBlock boxWidth="125px" width="50px" height="50px" top="-3px" left="2px" imgSrc={houseIcon} infoText="Home Cleaning" bold="false"></InfoBlock>
+                        <InfoBlock boxWidth="135px" width="50px" height="50px" top="2px" left="-7px" imgSrc={poolIcon} infoText="Backyard & Pool" bold="false"></InfoBlock>
+                        <InfoBlock boxWidth="100px" width="50px" height="50px" top="0px" left="6px" imgSrc={pipeIcon} infoText="Roof & Pipe" bold="false"></InfoBlock>
+                        <InfoBlock boxWidth="80px" width="50px" height="50px" top="0px" left="6px" imgSrc={applianceIcon} infoText="Appliance" bold="false"></InfoBlock>
+                        <InfoBlock boxWidth="160px" width="50px" height="50px" top="0px" left="-4px" imgSrc={sweepIcon} infoText="Something different" bold="false"></InfoBlock>
+                    </InfoWrapper>
+                    <TitleWrapper imgWidth="18px" imgSrc={ventor} infoText="Popular Instant Bookings" style={{marginTop : '90px'}}></TitleWrapper>
+                    <TitleWrapper imgWidth="0px" imgSrc={''} infoText="Can't find what you need ?"></TitleWrapper>
+                    <SubTitleBox>Post a task and receive offers from Taskers on how they can help !</SubTitleBox>
+                    <PostTaskBtn>Post a task & get offers</PostTaskBtn>
                </RightPartBox>
             </DashboardBlockWrapper>
         )

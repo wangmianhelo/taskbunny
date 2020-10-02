@@ -35,18 +35,12 @@ class InfoBlock extends Component{
         const infoText = this.props.infoText;
         const bold = this.props.bold;
 
-        console.log("<<<<<<<<<width=========",width);
-        console.log("<<<<<<<<<height=========",height);
-        console.log("<<<<<<<<<imgSrc=========",imgSrc);
-        console.log("<<<<<<<<<infoText=========",infoText);
-        console.log("<<<<<<<<<bold=========",bold);
-
         return(
             <InfoWrapper style={{width : boxWidth}}>
                <InfoImgBox style={{width:width,height:height}}>
                    <Img src={imgSrc} style={{top : top,left : left}}></Img>
                </InfoImgBox>
-               <InfoText style={{fontWeight : bold ? 'bold' : ''}}>{infoText}</InfoText>
+               <InfoText style={{fontWeight : bold ? 'bold' : 'normal'}}>{infoText}</InfoText>
             </InfoWrapper>
         );
     }
