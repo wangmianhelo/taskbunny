@@ -1,16 +1,17 @@
 import React from "react";
 import Task from "./components/Task";
+import Wrapper from "./elements/Wrapper";
 
 const Tasks = () => {
   return (
-    <div>
+    <Wrapper>
       <Task />
       <Task />
       <Task />
       <Task />
       <Task />
       <Task />
-    </div>
+    </Wrapper>
   );
 };
 
