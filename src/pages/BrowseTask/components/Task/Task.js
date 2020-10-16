@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
@@ -10,9 +11,8 @@ const TaskCard = styled.div`
   border: 3px solid #5EDEFC;
   border-radius: 3px;
   box-sizing: border-box;
-  position: absolute;
-  left: 5.625rem;
-  top: 15rem;
+  margin: 1.375rem;
+
 `;
 
 const TaskLink = styled.div`
@@ -98,19 +98,17 @@ const TaskStatus = styled.div`
   float:right;
 `;
 
-
 const Task = (props) => {
   return (
     <TaskCard>
       <TaskLink>
         <a href="/">
-          <TaskBudget>$120</TaskBudget>
+          <TaskBudget>${props.budget}</TaskBudget>
           <TaskAvatar src={taskerImg}></TaskAvatar>
-          <TaskDetail>Carpet cleanning, 20 sq metre
-          2 bedroom</TaskDetail>
-          <TaskLocation><img src={locationImg} alt="location" />Sydney, NSW</TaskLocation>
-          <TaskDate><img src={dateImg} alt="date" />Mon, 21 Sep</TaskDate>
-          <TaskStatus>Open</TaskStatus>
+          <TaskDetail>{props.detail}</TaskDetail>
+          <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
+          <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
+          <TaskStatus>{props.status}</TaskStatus>
         </a>
       </TaskLink>
     </TaskCard>
