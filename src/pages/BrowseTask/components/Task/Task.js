@@ -12,16 +12,12 @@ const TaskCard = styled.div`
   border-radius: 3px;
   box-sizing: border-box;
   margin: 1.375rem;
-
 `;
 
-const TaskLink = styled.div`
-  display: block;
-
-  & a {
-    text-decoration: none;
-  }
-  & a:visited {
+const TaskLink = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+  &:visited {
     color: inherit;
   }
 `;
@@ -45,7 +41,7 @@ const TaskAvatar = styled.div`
     float: right;
 `;
 
-const TaskDetail = styled.div`
+const TaskTitle = styled.div`
   clear: both;
   font-weight: 700;
   font-size: 1.125rem;
@@ -89,8 +85,8 @@ const TaskStatus = styled.div`
     height: 1rem;
     background-color: #5EDEFC;
     margin-right: 4px;
-
   }
+
   color: #5EDEFC;
   font-size: 1.125rem;
   line-height: 1.375rem;
@@ -101,15 +97,13 @@ const TaskStatus = styled.div`
 const Task = (props) => {
   return (
     <TaskCard>
-      <TaskLink>
-        <a href="/">
-          <TaskBudget>${props.budget}</TaskBudget>
-          <TaskAvatar src={taskerImg}></TaskAvatar>
-          <TaskDetail>{props.detail}</TaskDetail>
-          <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
-          <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
-          <TaskStatus>{props.status}</TaskStatus>
-        </a>
+      <TaskLink onClick={props.onClick}>
+        <TaskBudget>${props.budget}</TaskBudget>
+        <TaskAvatar src={taskerImg}></TaskAvatar>
+        <TaskTitle>{props.title}</TaskTitle>
+        <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
+        <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
+        <TaskStatus>{props.status}</TaskStatus>
       </TaskLink>
     </TaskCard>
   );
