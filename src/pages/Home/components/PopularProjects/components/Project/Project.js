@@ -84,11 +84,11 @@ const Project = (props) => {
   return(
     <ProjectCard>
       <ProjectLink>
-        <a href="/">
+        <a href={props.link}>
           <ProjectImg src={props.img}></ProjectImg>
           <ProjectText>
-            <h3><img src={taskImg} alt="task"/>House Cleaning</h3>
-            <span><img src={starImg} alt="star"/>Starting at $22/hr</span>
+            <h3><img src={taskImg} alt="task"/>{props.title}</h3>
+            <span><img src={starImg} alt="star"/>{props.price}</span>
           </ProjectText>
         </a>
       </ProjectLink>
