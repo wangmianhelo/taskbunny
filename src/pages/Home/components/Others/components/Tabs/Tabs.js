@@ -30,14 +30,13 @@ const Tab = styled.span`
   cursor: pointer;
   font-weight: 700;
   &:hover {
-    color: #008fb4;
     text-decoration: underline;
+    color: #f3d250;
   }
   ${(props) => {
     if (props.active) {
       return css`
-        color: #008fb4;
-        text-decoration: underline;
+        border-bottom: 2px solid #f3d250;
       `;
     }
   }}
@@ -50,28 +49,28 @@ class Tabs extends React.Component {
     return (
       <Layout>
         <Tab
-          active={activeTab === "MOVING_HOME"}
-          onClick={() => handleTabClick("MOVING_HOME")}
+          active={activeTab === "HOME_CLEANING"}
+          onClick={() => handleTabClick("HOME_CLEANING")}
         >
-          Moving home
+          Home Cleaning
         </Tab>
         <Tab
-          active={activeTab === "STARTING_A_BUSINESS"}
-          onClick={() => handleTabClick("STARTING_A_BUSINESS")}
+          active={activeTab === "BACKYARD_&_POOL"}
+          onClick={() => handleTabClick("BACKYARD_&_POOL")}
         >
-          Starting a business
+          Backyard & Pool
         </Tab>
         <Tab
-          active={activeTab === "FIXING_STUFF"}
-          onClick={() => handleTabClick("FIXING_STUFF")}
+          active={activeTab === "ROOF_&_PIPE"}
+          onClick={() => handleTabClick("ROOF_&_PIPE")}
         >
-          Fixing stuff
+          Roof & Pipe
         </Tab>
         <Tab
-          active={activeTab === "HOSTING_A_PARTY"}
-          onClick={() => handleTabClick("HOSTING_A_PARTY")}
+          active={activeTab === "APPLIANCE"}
+          onClick={() => handleTabClick("APPLIANCE")}
         >
-          Hosting a party
+          Appliance
         </Tab>
         <Tab
           active={activeTab === "SOMETHING_DIFFERENT"}

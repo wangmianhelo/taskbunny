@@ -7,14 +7,14 @@ import TabDescription from "./components/TabDescription";
 const Button = styled.button`
   display: block;
   cursor: pointer;
-  color: rgb(255, 255, 255);
   letter-spacing: 0.15px;
-  background-color: rgb(224, 68, 109);
-  border-radius: 160px;
+  border-radius: 90px;
   padding: 14px 26px;
   margin: 20px auto;
   width: 240px;
   font-size: 18px;
+  background: #f3d250;
+  border: 3px solid #000000;
 `;
 
 const SectionTitle = styled.h3`
