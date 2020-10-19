@@ -7,6 +7,7 @@ import MyDashboard from "./pages/MyDashboard";
 import store from "./store";
 import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
+import Notification from "./pages/Notification";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/mydashboard" component={MyDashboard}></Route>
             <Route path="/post_a_task" exact component={PostTask} />
             <Route path="/browse-tasks" exact component={BrowseTask} />
+            <Route path="/notification" exact component={Notification}/>
           </Switch>
         </BrowserRouter>
       </Provider>
