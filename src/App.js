@@ -1,11 +1,9 @@
 import React, { Fragment } from "react";
 import GlobalStyle from "./globalStyles";
-import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 
 import MyDashboard from "./pages/MyDashboard";
-import store from "./store";
 import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
 import Notification from "./pages/Notification";
@@ -14,7 +12,6 @@ import Account from "./pages/Account";
 function App() {
   return (
     <Fragment>
-      <Provider store={store}>
         <GlobalStyle />
         <BrowserRouter>
           <Switch>
@@ -26,7 +23,6 @@ function App() {
             <Route path="/notification" exact component={Notification}/>
           </Switch>
         </BrowserRouter>
-      </Provider>
     </Fragment>
   );
 }

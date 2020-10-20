@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styled from "styled-components";
-import { actionCreators }  from '../store';
+
 import cardImg from "../../../../../statics/tasker-samantha.jpg"
 import starSvg from "../../../../../statics/icon/star-svgrepo-com.svg"
 import indenIcon from "../../../../../statics/icon/id-card-svgrepo-com.svg"
 import houseImg from "../../../../../statics/icon/house-svgrepo-com.svg"
-import store from '../../../../../store';
-import { getInitData } from '../store/actionCreators';
+
 
 const TaskerBlockWrapper = styled.div `
     overflow: hidden;
@@ -159,8 +157,8 @@ class TaskerBlock extends Component {
         return (
             <TaskerBlockWrapper>
                <TaskerSpec>
-                   <TaskerName onMouseEnter ={this.props.handleNameFocus} onMouseLeave={this.props.handleNameLeave}>{this.props.name}</TaskerName>
-                   <TaskerSpecicalize>Specialities: handyman, electrician, delivery. <br/><br/> {this.props.data} </TaskerSpecicalize>
+                   <TaskerName >Bred</TaskerName>
+                   <TaskerSpecicalize>Specialities: handyman, electrician, delivery. <br/><br/> this is desc </TaskerSpecicalize>
                 </TaskerSpec>
                 <TaskerReview>
                     <TaskerCredit>TRUST</TaskerCredit>
@@ -186,31 +184,11 @@ class TaskerBlock extends Component {
     }
 
     componentDidMount() {
-        this.props.getInitData();
+       
     }
 
 }
-const mapStateToProps = (state) =>{
-     return{
-       name: state.tasker.name,
-       data: state.tasker.data
-    }
-}
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        handleNameFocus(){
-            dispatch(actionCreators.nameFocusAction());
-        },
-        handleNameLeave(){
-            dispatch(actionCreators.nameLeaveAction());
-        },
-        getInitData(){
-            dispatch(actionCreators.getInitData())
-        }
-        }
-    }
 
 
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskerBlock);
+export default TaskerBlock;
