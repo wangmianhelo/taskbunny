@@ -8,6 +8,13 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         background-color: rgb(246, 248, 253);
     }
+    ul{
+        margin:0;
+        padding:0;
+    }
+    li{
+        list-style : none;
+    }
 `;
 
 export default GlobalStyle;
