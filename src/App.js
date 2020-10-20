@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import store from './store';
+import Account from "./pages/Account";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/account" exact component={Account} />
         </Switch>
       </BrowserRouter>
       </Provider>

@@ -17,8 +17,10 @@ export const showInitData =(data) =>({
 
 export const getInitData = () =>{
     return(dispatch) =>{
-        axios.get('./res.json').then((res) =>{
-            const result = res.data.data;
+        axios.get('/api/blog/list').then((res) =>{
+            console.log(res.data)
+            const result = res.data.data[0].title;
+            console.log(result)
             dispatch(showInitData(result))
         })
     }

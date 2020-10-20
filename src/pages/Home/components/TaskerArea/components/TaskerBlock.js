@@ -154,7 +154,7 @@ const HouseIcon = styled.img `
 
 
 class TaskerBlock extends Component {
-
+    
     render(){
         return (
             <TaskerBlockWrapper>

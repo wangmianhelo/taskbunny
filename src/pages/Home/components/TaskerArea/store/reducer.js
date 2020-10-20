@@ -13,7 +13,6 @@ export default(state = defaultState, action) =>{
             name: "Tom",
             focus: true
         }
-
     }
     if (action.type === constants.NAME_LEAVE) {
         return {
