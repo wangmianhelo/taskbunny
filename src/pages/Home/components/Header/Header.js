@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import rabbit from "./elements/logo.svg";
 import taskman from "./elements/taskman.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -84,16 +86,17 @@ const ButtonWhite = styled.span`
 
 const AvatarContainer = styled.div`
   margin-top: 20px;
-  margin-right: 60px;
+  margin-right: 15px;
+  cursor: pointer;
   & > img {
     object-fit: fill;
     width: 65.33px;
-    height: 60.33px;
+    height: 56.33px;
     border-radius: 50%;
   }
 `;
 
-const HiddenButton = styled.div`
+const MenuButton = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: inline-block;
@@ -101,48 +104,57 @@ const HiddenButton = styled.div`
     right: 60px;
     top: 55px;
     cursor: pointer;
-    & > div {
-      width: 28px;
-      height: 3px;
-      margin: 0 0 5px 0;
-      background: black;
-      transition: all 0.5s east-out;
-    }
-    & .close {
-      transform: rotate(180deg);
-      & > div {
-        &:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-        &:nth-child(2) {
-          opacity: 0;
-        }
-        &:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -6px);
-        }
-      }
-    }
   }
 `;
+
+const HiddenMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+`;
+
+const CloseMenuButton = styled.div``;
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
+      showMenu: false,
     };
   }
 
   setLoggedIn(loggedIn) {
     this.setState({
-      loggedIn: loggedIn,
+      loggedIn,
+    });
+  }
+
+  setShowMenu(showMenu) {
+    this.setState({
+      showMenu,
     });
   }
 
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, showMenu } = this.state;
     return (
       <HeaderWrapper>
+        {showMenu && (
+          <HiddenMenu>
+            <CloseMenuButton
+              onClick={() => {
+                this.setShowMenu(false);
+              }}
+            >
+              <FontAwesomeIcon icon={faTimes} size="lg" color="white" />
+            </CloseMenuButton>
+          </HiddenMenu>
+        )}
+
         <HeaderLeft>
           <LogoContainer>
             <img src={rabbit} alt="taskbunny" />
@@ -152,11 +164,13 @@ class Header extends React.Component {
           <ButtonLeft>Browse tasks</ButtonLeft>
           <ButtonLeft>How it works</ButtonLeft>
         </HeaderLeft>
-        <HiddenButton>
-          <div></div>
-          <div></div>
-          <div></div>
-        </HiddenButton>
+        <MenuButton
+          onClick={() => {
+            this.setShowMenu(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faBars} size="lg" />
+        </MenuButton>
         <HeaderRight>
           {loggedIn ? (
             <AvatarContainer
