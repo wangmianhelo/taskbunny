@@ -102,7 +102,7 @@ const MenuButton = styled.div`
     display: inline-block;
     position: absolute;
     right: 60px;
-    top: 55px;
+    top: 45px;
     cursor: pointer;
   }
 `;
@@ -116,7 +116,27 @@ const HiddenMenu = styled.div`
   background: rgba(0, 0, 0, 0.9);
 `;
 
-const CloseMenuButton = styled.div``;
+const CloseMenuButton = styled.div`
+  margin-left: 40px;
+  margin-top: 45px;
+  cursor: pointer;
+`;
+
+const MenuWrapper = styled.div`
+  color: white;
+  & > div {
+    margin-left: 40px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  & > div:nth-child(1) {
+    color: #5edefc;
+  }
+  & > :nth-child(4) {
+    color: #f3d250;
+  }
+`;
 
 class Header extends React.Component {
   constructor(props) {
@@ -150,8 +170,23 @@ class Header extends React.Component {
                 this.setShowMenu(false);
               }}
             >
-              <FontAwesomeIcon icon={faTimes} size="lg" color="white" />
+              <FontAwesomeIcon icon={faTimes} size="2x" color="white" />
             </CloseMenuButton>
+            <MenuWrapper>
+              <div>Become a Tasker</div>
+              <div
+                onClick={() => {
+                  this.setLoggedIn(true);
+                }}
+              >
+                Log in
+              </div>
+              <div>Home</div>
+              <div>Post a Task</div>
+              <div>Categories</div>
+              <div>Browse tasks</div>
+              <div>How it works</div>
+            </MenuWrapper>
           </HiddenMenu>
         )}
 
@@ -164,13 +199,18 @@ class Header extends React.Component {
           <ButtonLeft>Browse tasks</ButtonLeft>
           <ButtonLeft>How it works</ButtonLeft>
         </HeaderLeft>
-        <MenuButton
-          onClick={() => {
-            this.setShowMenu(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faBars} size="lg" />
-        </MenuButton>
+        {!loggedIn && (
+          <React.Fragment>
+            <MenuButton
+              onClick={() => {
+                this.setShowMenu(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faBars} size="2x" />
+            </MenuButton>
+          </React.Fragment>
+        )}
+
         <HeaderRight>
           {loggedIn ? (
             <AvatarContainer
