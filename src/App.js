@@ -6,12 +6,14 @@ import Home from "./pages/Home";
 import MyDashboard from "./pages/MyDashboard";
 import store from "./store";
 import PostTask from "./pages/PostTask/PostTask";
+import Header from "./pages/Home/components/Header";
 
 function App() {
   return (
     <Fragment>
       <Provider store={store}>
         <GlobalStyle />
+        <Header />
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Home} />
