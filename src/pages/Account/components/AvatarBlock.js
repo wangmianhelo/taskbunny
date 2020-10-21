@@ -19,7 +19,7 @@ const Avatar = styled.img `
     margin: 20px  auto ;
     width: 150px;
     height: 150px;
-    background: url(${AvatarImg});
+    background: url(${props => props.src});
     border-radius: 50%;
     background-size: contain;
     border: none;
@@ -35,11 +35,12 @@ const NameWrapper = styled.div `
 
 
 
-const AvatarBlock = () =>{
+const AvatarBlock = (props) =>{
     return(
+       
         <BlockWrapper>
            <AvatarWrapper>
-               <Avatar/>
+               <Avatar src={props.img} />
                <NameWrapper>Xiao{' '}Wang</NameWrapper>
             </AvatarWrapper> 
         </BlockWrapper>

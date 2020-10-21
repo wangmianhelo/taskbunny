@@ -22,6 +22,9 @@ const HeaderTitle = styled.h4 `
     line-height: 42px;
     `
 
+const Form = styled.form `
+`;
+
 const UpdateButton = styled.button `
     width: 200px;
     height: 65px;
@@ -50,74 +53,68 @@ const InputLabel = styled.label`
     `
 
 const InputForm = styled.input `
+    background: none;
+    outline: none; 
+    border: none;
     display:block;
     width: 400px;
     height: 40px;
     line-height: 30px;
     padding: 0 10px;
     border: 1px solid #bbc2dc;
+    &.is-invalid {
+        border-color:red;
+    }
+    &.form-control{
+       border-color:green;
+    }
+
     &:focus {
-        box-shadow: 0 0 3px 2px rgba(1,164,209,.29);
+       box-shadow: 0 0 3px 2px rgba(1,164,209,.29);
         border-color: rgba(1,164,209,.5);
     }
+  
 `
-const SelectorLabel = styled.label`
-    display: block;
-    margin-left: 20px;
-    font-weight: 500;
-    width: 400px;
-    height: 80px;
-    margin-bottom: 20px;
-    color: #545a77;
-    `
+
+
 
 const RadioItem = styled.input`
+    `;
 
-    `
-const DeactivateBlock = styled.div `
-    width: 100%;
-    height:200px;
-    margin-top: 30px;
-    border-top: 1px solid #ccc;
-    `
-const DeactivateButton = styled.button `
-    width: 250px;
-    height: 65px;
-    margin-left: 50px;
-    display:block;
-    background: #000000;
-    color: #5EDEFC;
-    border: 3px solid #000000;
-    box-sizing: border-box;
-    border-radius: 90px;
-    font-size: 20px;
-    margin-top:80px;
-`
+class AccInfo extends React.Component{
+    constructor(props){
+        super(props)
+        
+    }
 
-const AccInfo = () =>{
-    return(
-        <AccInfoWrapper>
+
+
+    render(){
+        return( <AccInfoWrapper>
             <AccHeader>
                 <HeaderTitle>Account</HeaderTitle>
             </AccHeader>
             <UpdateButton>Update{' '}Avatar</UpdateButton>
             <InputBox>
-                <InputLabel >First{' '}Name<InputForm placeholder='Xiao'/></InputLabel>
-                <InputLabel >Last{' '}Name<InputForm placeholder='Wang'/></InputLabel>
-                <InputLabel >Mobile{' '}Number<InputForm placeholder='131301'/></InputLabel>
-                <InputLabel >Email{' '}Address<InputForm placeholder='1213@163.com'/></InputLabel>
-                <InputLabel >Location<InputForm placeholder='Melbourne,AUS'/></InputLabel>
-                <SelectorLabel>On{' '}Taskburry{' '}I{' '} want{' '}to <br/><br/>
-                    <RadioItem name='select' type='radio'/>Post{' '} tasks <br/>
-                    <RadioItem name='select' type='radio'/>Earn{' '} money
-                </SelectorLabel>
-                <UpdateButton>Save{' '}Details</UpdateButton>
-                <DeactivateBlock><DeactivateButton>Deactivate {' '}my{' '} account</DeactivateButton></DeactivateBlock>
+            
+                <InputLabel >First{' '}Name<InputForm placeholder='Mian' name="firstName" value={this.props.firstName}  onChange={this.props.onTodoChange} /></InputLabel>
+                <InputLabel >Last{' '}Name<InputForm placeholder='Wang' name="lastName"  value={this.props.lastName} ref={(input) =>{this.lastName = input}}  onChange={this.props.onTodoChange}/></InputLabel>
+                <InputLabel >Mobile{' '}Number<InputForm placeholder='131301' name='phoneNumber' value={this.props.phoneNumber} ref={(input) =>{this.phoneNumber = input}}  onChange={this.props.onTodoChange}/></InputLabel>
+                <InputLabel >Email{' '}Address<InputForm className={this.props.invalid_email ? `is-invalid` : `form-control`} placeholder='1213@163.com' name='email' value={this.props.email} ref={(input) =>{this.email = input}}  onChange={this.props.checkEmail}/></InputLabel>
+                <InputLabel >Location<InputForm placeholder='Melbourne,AUS' name='location' value={this.props.location} ref={(input) =>{this.location = input}}  onChange={this.props.onTodoChange} /></InputLabel>
                
+                <UpdateButton onClick={this.props.updateInfo}>Save{' '}Details</UpdateButton>
+             
                 
             </InputBox>
-        </AccInfoWrapper>
-    )
+        </AccInfoWrapper>)
+    }
+
 }
+
+
+
+
+
 
 export default AccInfo;
