@@ -8,11 +8,13 @@ import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
 import Notification from "./pages/Notification";
 import Account from "./pages/Account";
+import Header from "./pages/Home/components/Header";
 
 function App() {
   return (
     <Fragment>
         <GlobalStyle />
+        <Header />
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Home} />
