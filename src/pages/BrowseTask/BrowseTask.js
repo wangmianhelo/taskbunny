@@ -19,7 +19,13 @@ const tasks = [
       status: "Open",
       details: "0Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "0Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 121,
@@ -31,7 +37,13 @@ const tasks = [
       status: "Assigned",
       details: "1Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg2, detailImg3, detailImg1 ],
-      questions: [ "1Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!", "1Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 122,
@@ -43,7 +55,13 @@ const tasks = [
       status: "Completed",
       details: "2Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 123,
@@ -55,7 +73,13 @@ const tasks = [
       status: "Open",
       details: "3Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 120,
@@ -67,7 +91,13 @@ const tasks = [
       status: "Open",
       details: "Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 120,
@@ -79,7 +109,13 @@ const tasks = [
       status: "Open",
       details: "Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 120,
@@ -91,7 +127,13 @@ const tasks = [
       status: "Open",
       details: "Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
     {
       budget: 120,
@@ -103,7 +145,13 @@ const tasks = [
       status: "Open",
       details: "Iaculis mattis cras tempus consectetur cum scelerisque tristique consectetur. Risus urna duis vitae varius vitae ipsum. Ipsum risus morbi enim massa nec cras. Pretium malesuada enim egestas id id sit sit dignissim.",
       images: [ detailImg1, detailImg2, detailImg3 ],
-      questions: [ "Please don't share personal info – insurance won't apply to tasks not done through TaskBunny!" ]
+      questions: [
+        {
+          avatar: avatarTrader,
+          name: "Oscar",
+          content: "Happy to help you.",
+        },
+      ]
     },
   ]
 
