@@ -224,7 +224,7 @@ const TaskDetail = (props) => {
         <h3>Details</h3>
         <div>{props.details}</div>
         <div>{props.details}</div>
-        {props.images.map( image => (
+        {(props.images || []).map( image => (
           <img src={image} alt="" />
         ))}
       </TaskContent>
@@ -234,9 +234,9 @@ const TaskDetail = (props) => {
       </TaskOffer>
 
       <TaskQuestion>
-        <h3>Question ({props.questions.length})</h3>
+        <h3>Question ({(props.questions || []).length})</h3>
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
-        {props.questions.map( question => (
+        {(props.questions || []).map( question => (
           <Question>
             <QuestionerAvatar src={question.avatar} />
             <QuestionerName>{question.name}</QuestionerName>
