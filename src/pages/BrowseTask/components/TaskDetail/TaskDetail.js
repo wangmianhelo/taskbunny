@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
+import Task from "../../../Home/components/Others/components/Tasks/components/Task";
 
 
 const TaskSummary = styled.div`
@@ -152,7 +153,37 @@ const TaskQuestion = styled.div`
 const Question = styled.div`
   font-size: 0.875rem;
   line-height: 1.25rem;
+  margin: 1rem 0;
+  padding-top: 10px;
   padding-bottom: 10px;
+
+`;
+
+const QuestionerAvatar = styled.div`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 2rem;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  float: left;
+`;
+
+const QuestionerName = styled.div`
+  font-weight: 700;
+
+`;
+
+const QuestionContent = styled.div`
+  clear: both;
+  background-color: #f6f8fd;
+  border-radius: 10px;
+  margin: 1rem 0;
+  padding: 10px;
 `;
 
 const SignIn = styled.div`
@@ -183,7 +214,7 @@ const TaskDetail = (props) => {
           <Button>Make an offer</Button>
         </TaskBudget>
         <TaskPostBy>
-          <TaskAvatar src={props.avatar}></TaskAvatar>
+          <TaskAvatar src={props.avatar} />
           Post by <span>{props.name}</span>
         </TaskPostBy>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
@@ -193,7 +224,7 @@ const TaskDetail = (props) => {
         <h3>Details</h3>
         <div>{props.details}</div>
         <div>{props.details}</div>
-        {props.images.map( image => (
+        {(props.images || []).map( image => (
           <img src={image} alt="" />
         ))}
       </TaskContent>
@@ -201,12 +232,19 @@ const TaskDetail = (props) => {
         <h3>Offers</h3>
         <Button>Make an offer</Button>
       </TaskOffer>
+
       <TaskQuestion>
-        <h3>Question ({props.questions.length})</h3>
-        {props.questions.map( question => (
-          <Question>{question}</Question>
+        <h3>Question ({(props.questions || []).length})</h3>
+        <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
+        {(props.questions || []).map( question => (
+          <Question>
+            <QuestionerAvatar src={question.avatar} />
+            <QuestionerName>{question.name}</QuestionerName>
+            <QuestionContent>{question.content}</QuestionContent>
+          </Question>
         ))}
       </TaskQuestion>
+
       <SignIn>
         <h3>To join the conversation</h3>
         <Button>Join TaskBunny</Button><span>or</span><Button>Log in</Button>
