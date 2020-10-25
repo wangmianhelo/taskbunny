@@ -24,11 +24,12 @@ class Account extends React.Component{
             phoneNumber:'',
             location: '',
             email:'',
-
+            avatar: null,
+            
             invalid_email: '',
         }
      
-  
+        this.handleFile = this.handleFile.bind(this);
   
     }
 
@@ -40,33 +41,50 @@ class Account extends React.Component{
 			invalid_email: !reg.test(e.target.value),
         })
         console.log(this.state.invalid_email)
-	};
+    };
+    handleFile = (f) =>{
+       console.log(this)
+        console.log(this.state.firstName) 
+        this.setState({
+            avatar: f,
+            firstName: 5
+        },() =>{
+            const data = new FormData()
+            data.append('file', this.state.avatar)
+            axios.post("/upload/wm194@qq.com", data).then(res =>{
+                this.setState({
+                    imgUrl: res.data.avatar
+                })
+            })});
+        
+    }
 
 
 
     render(){
         return (
             <AccountWrapper>
-            <AccInfo firstName={this.state.firstName} lastName={this.state.lastName}  phoneNumber={this.state.phoneNumber}  location={this.state.location} email={this.state.email } invalid_email={this.state.invalid_email} checkEmail={this.checkEmail.bind(this)} onTodoChange ={this.onTodoChange.bind(this)} updateInfo= {this.updateInfo.bind(this)} />
+            <AccInfo firstName={this.state.firstName} lastName={this.state.lastName}  phoneNumber={this.state.phoneNumber}  location={this.state.location} email={this.state.email } invalid_email={this.state.invalid_email} handleFile={this.handleFile.bind(this)}  checkEmail={this.checkEmail.bind(this)} onTodoChange ={this.onTodoChange.bind(this)} updateInfo= {this.updateInfo.bind(this)} />
             <AvatarBlock img={this.state.imgUrl}/>
         </AccountWrapper>
         )
     }
     componentDidMount(){
         
-        const _this=this; 
+       
         
         axios.get('/user/info/wm194@qq.com').then((res) =>{
             
-            _this.setState({
+            this.setState({
                 imgUrl: res.data.data.avatar,
                 firstName: res.data.data.firstName,
                 lastName: res.data.data.lastName,
                 phoneNumber: res.data.data.phoneNumber,
                 location: res.data.data.location,
                 email:  res.data.data.email,
+                avatar: ''
             });
-            console.log(_this.state.imgUrl)
+            console.log(this.state.imgUrl)
         })
     }
     onTodoChange(e){
