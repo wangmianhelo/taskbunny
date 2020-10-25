@@ -15,10 +15,11 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 `;
 
 const Modal = styled.div`
-  width: 400px;
+  width: 470px;
   background: white;
 `;
 
@@ -29,7 +30,7 @@ const Header = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.75rem;
 `;
@@ -39,6 +40,8 @@ const Close = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+  font-size: 24px;
+  font-weight: 200;
   position: absolute;
   top: 0;
   right: 2.25rem;
@@ -52,32 +55,64 @@ const Body = styled.div`
 `;
 
 const Offer = styled.div`
-  padding-top: 2.25rem;
-  padding-bottom: 1.125rem;
+  padding-bottom: 2rem;
   font-size: 1.5rem;
   font-weight: 700;
-
+  line-height: 3rem;
+  text-align: center;
+  span {
+    border: 1px solid #C4C4C4;
+    border-right: 0;
+    padding: 1rem;
+  }
 `;
 
+const OfferInput = styled.input`
+  border: 1px solid #C4C4C4;
+  line-height: 58px;
+  text-align: center;
+  width: 30%;
+`;
 
 const ServiceFee = styled.div`
-  padding: 1rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  padding-bottom: 0.5rem;
+  span {
+    float: right;
+  }
 `;
 
 const ReceiveFee = styled.div`
-  padding: 1rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+  padding-bottom: 0.5rem;
+  span {
+    float: right;
+  }
 `;
 
 const ServiceTier = styled.div`
-  padding: 1rem 2.25rem;
+  background: #F3D250;
+  margin: 1.625rem -2.25rem;
+  padding: 2.625rem 2.25rem 1rem;
+  text-align: center;
+  img {
+    width: 3.75rem;
+    padding: 1.125rem 0;
+  }
 `;
 
-const ServiceTerms = styled.div`
+const ServiceTerms = styled.a`
+  display: block;
   padding: 1rem 2.25rem;
+  color: #FEFFFF;
 `;
 
 const Footer = styled.div`
-  padding: 1rem 2.25rem;
+  padding: 1.625rem 2.25rem;
 `;
 
 const SubmitButton = styled.button`
@@ -88,6 +123,8 @@ const SubmitButton = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   padding: 0;
+  width: 100%;
+  height: 2.875rem;
 `;
 
 const submitTask = (task) => {
@@ -104,16 +141,16 @@ const MakeOfferModal = ({ task, onClose }) => {
         </Header>
         <Body>
           <Offer>Your offer
-            <div><span>$</span><input></input></div>
+            <div><span>$</span><OfferInput></OfferInput></div>
           </Offer>
-          <ServiceFee>Bronze service fee</ServiceFee>
-          <ReceiveFee>You'll receive</ReceiveFee>
+          <ServiceFee>Bronze service fee<span>-$8.80</span></ServiceFee>
+          <ReceiveFee>You'll receive<span>$31.20</span></ReceiveFee>
           <ServiceTier>
             <div>Great work - earn more and enjoy a lower service fee!</div>
-            <img src="{Bronze}" alt="" />
+            <img src={Bronze} alt="" />
             <div>Your last 30 day total: $0</div>
             <div>Your current tier: Bronze</div>
-            <ServiceTerms>Find out how your service fee is calculated</ServiceTerms>
+            <ServiceTerms href="">Find out how your service fee is calculated</ServiceTerms>
           </ServiceTier>
         </Body>
         <Footer>
