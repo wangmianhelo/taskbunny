@@ -232,7 +232,7 @@ const TaskDetail = (props) => {
       </TaskContent>
       <TaskOffer>
         <h3>Offers</h3>
-        <Button>Make an offer</Button>
+        <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
       </TaskOffer>
 
       <TaskQuestion>
