@@ -2,7 +2,7 @@
   "name": "taskbunny",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:7001",
+  "proxy":"http://localhost:7001",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -17,6 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
+    "react-responsive-animate-navbar": "^1.1.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "react-swipe": "^6.0.4",

@@ -1,42 +1,47 @@
 import React from "react";
-import TaskCard from "./elements/TaskCard";
-import CardContent from "./elements/CardContent";
-import CardTop from "./elements/CardTop";
-import CardMid from "./elements/CardMid";
-import TaskDesc from "./elements/TaskDesc";
-import Price from "./elements/Price";
-import CardBottom from "./elements/CardBottom";
 import styled from "styled-components";
-import { ReactComponent as Star } from "./elements/star.svg";
+import taskman from "./elements/taskman.jpeg";
 
-const TaskStar = styled.div`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 16px;
-  margin-right: 7px;
+const CardDesign = styled.div`
+  width: 246.28px;
+  height: 139.56px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 16px 12px;
+  margin: 6px;
 `;
 
-const Text = styled.span``;
+const CardLeft = styled.div`
+  & > p {
+    font-size: 0.5rem;
+  }
+`;
 
-const Task = () => {
+const CardRight = styled.div`
+  & > img {
+    width: 58.99px;
+    height: 52.99px;
+    border-radius: 50%;
+  }
+`;
+
+const Task = ({ title, description, price }) => {
   return (
-    <TaskCard>
-      <CardContent>
-        <CardTop>HANDYMAN / TRADIES</CardTop>
-        <CardMid>
-          <div className="profilepic"></div>
-          <TaskDesc>Assemble an Ikea Hemnes open wardrobe</TaskDesc>
-          <Price>$100</Price>
-        </CardMid>
-        <CardBottom>
-          <TaskStar>
-            <Star />
-          </TaskStar>
-          <Text>5 Stars</Text>
-        </CardBottom>
-      </CardContent>
-    </TaskCard>
+    <CardDesign>
+      <CardLeft>
+        <h3>{title}</h3>
+        <h2>{price}</h2>
+        <p>{description}</p>
+      </CardLeft>
+      <CardRight>
+        <img src={taskman} alt="" />
+      </CardRight>
+    </CardDesign>
   );
 };
 
