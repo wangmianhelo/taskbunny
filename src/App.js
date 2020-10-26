@@ -18,7 +18,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/mydashboard" component={MyDashboard}></Route>
-            <Route path="/post_a_task" exact component={PostTask} />
+            <Route path="/post-a-task" exact component={PostTask} />
           </Switch>
         </BrowserRouter>
       </Provider>
