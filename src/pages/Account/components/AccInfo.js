@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-
+import FileUploader, {fileUploaded} from './FileUploader'
 
 const AccInfoWrapper = styled.div `
     grid-row:1/3;
@@ -25,6 +25,8 @@ const HeaderTitle = styled.h4 `
 const Form = styled.form `
 `;
 
+
+
 const UpdateButton = styled.button `
     width: 200px;
     height: 65px;
@@ -35,6 +37,7 @@ const UpdateButton = styled.button `
     box-sizing: border-box;
     border-radius: 90px;
     font-size: 20px;
+    cursor:pointer
 `
 const InputBox = styled.div `
     margin-top: 20px;
@@ -84,17 +87,17 @@ const RadioItem = styled.input`
 class AccInfo extends React.Component{
     constructor(props){
         super(props)
-        
+      
+      
     }
-
-
+  
 
     render(){
         return( <AccInfoWrapper>
             <AccHeader>
                 <HeaderTitle>Account</HeaderTitle>
             </AccHeader>
-            <UpdateButton>Update{' '}Avatar</UpdateButton>
+            <FileUploader handleFile = {this.props.handleFile}/>
             <InputBox>
             
                 <InputLabel >First{' '}Name<InputForm placeholder='Mian' name="firstName" value={this.props.firstName}  onChange={this.props.onTodoChange} /></InputLabel>
@@ -109,7 +112,7 @@ class AccInfo extends React.Component{
             </InputBox>
         </AccInfoWrapper>)
     }
-
+  
 }
 
 
