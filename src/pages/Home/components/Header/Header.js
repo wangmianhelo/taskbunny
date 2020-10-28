@@ -4,6 +4,7 @@ import rabbit from "./elements/logo.svg";
 import taskman from "./elements/taskman.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -182,7 +183,9 @@ class Header extends React.Component {
                 Log in
               </div>
               <div>Home</div>
-              <div>Post a Task</div>
+              <div>
+                <Link to="/post-a-task">Post a Task</Link>
+              </div>
               <div>Categories</div>
               <div>Browse tasks</div>
               <div>How it works</div>
@@ -234,19 +237,19 @@ class Header extends React.Component {
             </React.Fragment>
           )}
           {/* {loggedIn && <div>avatar</div>}
-          {!loggedIn && (
-            <React.Fragment>
-              <ButtonRight>Sign up</ButtonRight>
-              <ButtonRight
-                onClick={() => {
-                  this.setLoggedIn(true);
-                }}
-              >
-                Log in
-              </ButtonRight>
-              <ButtonWhite>Become a tasker</ButtonWhite>
-            </React.Fragment>
-          )} */}
+            {!loggedIn && (
+              <React.Fragment>
+                <ButtonRight>Sign up</ButtonRight>
+                <ButtonRight
+                  onClick={() => {
+                    this.setLoggedIn(true);
+                  }}
+                >
+                  Log in
+                </ButtonRight>
+                <ButtonWhite>Become a tasker</ButtonWhite>
+              </React.Fragment>
+            )} */}
         </HeaderRight>
       </HeaderWrapper>
     );
