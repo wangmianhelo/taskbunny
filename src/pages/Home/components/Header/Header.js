@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import rabbit from "./elements/logo.svg";
 import taskman from "./elements/taskman.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -84,44 +87,55 @@ const ButtonWhite = styled.span`
 
 const AvatarContainer = styled.div`
   margin-top: 20px;
-  margin-right: 60px;
+  margin-right: 15px;
+  cursor: pointer;
   & > img {
     object-fit: fill;
     width: 65.33px;
-    height: 60.33px;
+    height: 56.33px;
     border-radius: 50%;
   }
 `;
 
-const HiddenButton = styled.div`
+const MenuButton = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: inline-block;
     position: absolute;
     right: 60px;
-    top: 55px;
+    top: 45px;
     cursor: pointer;
-    & > div {
-      width: 28px;
-      height: 3px;
-      margin: 0 0 5px 0;
-      background: black;
-      transition: all 0.5s east-out;
-    }
-    & .close {
-      transform: rotate(180deg);
-      & > div {
-        &:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-        &:nth-child(2) {
-          opacity: 0;
-        }
-        &:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -6px);
-        }
-      }
-    }
+  }
+`;
+
+const HiddenMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+`;
+
+const CloseMenuButton = styled.div`
+  margin-left: 40px;
+  margin-top: 45px;
+  cursor: pointer;
+`;
+
+const MenuWrapper = styled.div`
+  color: white;
+  & > div {
+    margin-left: 40px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  & > div:nth-child(1) {
+    color: #5edefc;
+  }
+  & > :nth-child(4) {
+    color: #f3d250;
   }
 `;
 
@@ -130,19 +144,55 @@ class Header extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      showMenu: false,
     };
   }
 
   setLoggedIn(loggedIn) {
     this.setState({
-      loggedIn: loggedIn,
+      loggedIn,
+    });
+  }
+
+  setShowMenu(showMenu) {
+    this.setState({
+      showMenu,
     });
   }
 
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, showMenu } = this.state;
     return (
       <HeaderWrapper>
+        {showMenu && (
+          <HiddenMenu>
+            <CloseMenuButton
+              onClick={() => {
+                this.setShowMenu(false);
+              }}
+            >
+              <FontAwesomeIcon icon={faTimes} size="2x" color="white" />
+            </CloseMenuButton>
+            <MenuWrapper>
+              <div>Become a Tasker</div>
+              <div
+                onClick={() => {
+                  this.setLoggedIn(true);
+                }}
+              >
+                Log in
+              </div>
+              <div>Home</div>
+              <div>
+                <Link to="/post-a-task">Post a Task</Link>
+              </div>
+              <div>Categories</div>
+              <div>Browse tasks</div>
+              <div>How it works</div>
+            </MenuWrapper>
+          </HiddenMenu>
+        )}
+
         <HeaderLeft>
           <LogoContainer>
             <img src={rabbit} alt="taskbunny" />
@@ -152,11 +202,18 @@ class Header extends React.Component {
           <ButtonLeft>Browse tasks</ButtonLeft>
           <ButtonLeft>How it works</ButtonLeft>
         </HeaderLeft>
-        <HiddenButton>
-          <div></div>
-          <div></div>
-          <div></div>
-        </HiddenButton>
+        {!loggedIn && (
+          <React.Fragment>
+            <MenuButton
+              onClick={() => {
+                this.setShowMenu(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faBars} size="2x" />
+            </MenuButton>
+          </React.Fragment>
+        )}
+
         <HeaderRight>
           {loggedIn ? (
             <AvatarContainer
@@ -180,19 +237,19 @@ class Header extends React.Component {
             </React.Fragment>
           )}
           {/* {loggedIn && <div>avatar</div>}
-          {!loggedIn && (
-            <React.Fragment>
-              <ButtonRight>Sign up</ButtonRight>
-              <ButtonRight
-                onClick={() => {
-                  this.setLoggedIn(true);
-                }}
-              >
-                Log in
-              </ButtonRight>
-              <ButtonWhite>Become a tasker</ButtonWhite>
-            </React.Fragment>
-          )} */}
+            {!loggedIn && (
+              <React.Fragment>
+                <ButtonRight>Sign up</ButtonRight>
+                <ButtonRight
+                  onClick={() => {
+                    this.setLoggedIn(true);
+                  }}
+                >
+                  Log in
+                </ButtonRight>
+                <ButtonWhite>Become a tasker</ButtonWhite>
+              </React.Fragment>
+            )} */}
         </HeaderRight>
       </HeaderWrapper>
     );
