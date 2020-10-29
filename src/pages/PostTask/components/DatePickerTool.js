@@ -5,19 +5,21 @@ import styled from "styled-components";
 
 const DatePickerLayout = styled.div`
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 0;
-  width: 150px;
+  right: 0;
 `;
 
-function DatePickerTool() {
-  const [startDate, setStartDate] = useState(new Date());
-
+function DatePickerTool({ onChange, value }) {
   return (
     <DatePickerLayout>
       <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        /* selected={startDate}
+        onChange={(date) => setStartDate(date)} */
+        onChange={(e) => {
+          onChange(e);
+        }}
+        selected={value}
       />
     </DatePickerLayout>
   );

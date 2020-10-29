@@ -14,8 +14,8 @@ function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <Header />
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/mydashboard" component={MyDashboard}></Route>
