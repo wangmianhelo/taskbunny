@@ -7,7 +7,11 @@ import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
 import Notification from "./pages/Notification";
 import Account from "./pages/Account";
+
+import Near from "./pages/Near";
+import Map from './pages/Map'
 import Header from "./pages/Home/components/Header";
+
 
 function App() {
   return (
@@ -17,11 +21,14 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/map" exact component={Map}/>
             <Route path="/mydashboard" component={MyDashboard}></Route>
             <Route path="/post-a-task" exact component={PostTask} />      
             <Route path="/account" exact component={Account} />
             <Route path="/browse-tasks" exact component={BrowseTask} />
             <Route path="/notification" exact component={Notification}/>
+            <Route path="/near" exact component={Near}/>
+           
           </Switch>
         </BrowserRouter>
     </Fragment>
