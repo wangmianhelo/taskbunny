@@ -1,10 +1,12 @@
-import React from "react";
+
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
-import Task from "../../../Home/components/Others/components/Tasks/components/Task";
+
+import MakeOfferModal from "../MakeOfferModal";
 
 
 const TaskSummary = styled.div`
@@ -201,6 +203,8 @@ const SignIn = styled.div`
 
 
 const TaskDetail = (props) => {
+
+  const [ showModal, setShowModal ] = useState(false);
   return (
     <div>
       <TaskSummary>
@@ -211,7 +215,8 @@ const TaskDetail = (props) => {
         <TaskBudget>
           Task Budget
           <span>${props.budget}</span>
-          <Button>Make an offer</Button>
+
+          <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
         </TaskBudget>
         <TaskPostBy>
           <TaskAvatar src={props.avatar} />
@@ -230,7 +235,8 @@ const TaskDetail = (props) => {
       </TaskContent>
       <TaskOffer>
         <h3>Offers</h3>
-        <Button>Make an offer</Button>
+
+        <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
       </TaskOffer>
 
       <TaskQuestion>
@@ -249,6 +255,10 @@ const TaskDetail = (props) => {
         <h3>To join the conversation</h3>
         <Button>Join TaskBunny</Button><span>or</span><Button>Log in</Button>
       </SignIn>
+
+      {
+        showModal && <MakeOfferModal task={props} onClose={() => setShowModal(false)}></MakeOfferModal>
+      }
     </div>
   );
 };

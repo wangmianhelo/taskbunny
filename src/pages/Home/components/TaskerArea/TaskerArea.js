@@ -5,9 +5,9 @@ import TaskerBlock from "./components/TaskerBlock"
  
 
 const TaskerWrapper = styled.div `
-width: 100%;
-height: 800px;
-margin-top:50px;
+    width: 100%;
+    height: 800px;
+    margin-top:50px;
 `
 const TakserTitle = styled.div `
 

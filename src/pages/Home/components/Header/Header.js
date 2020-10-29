@@ -5,6 +5,8 @@ import taskman from "./elements/taskman.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter, Link } from "react-router-dom";
+import SignUpModal from './components/SignUpModal';
+import LogInModal from './components/LogInModal';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -139,6 +141,7 @@ const MenuWrapper = styled.div`
   }
 `;
 
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 
@@ -150,6 +153,12 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
+const MODAL = {
+  LOG_IN: 'LOG_IN',
+  SIGN_UP: 'SIGN_UP',
+  EMPTY: '',
+}
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -157,7 +166,21 @@ class Header extends React.Component {
     this.state = {
       loggedIn: false,
       showMenu: false,
+
+      showModal: MODAL.EMPTY,
     };
+
+    this.showModal = this.showModal.bind(this);
+  }
+
+  showModal(target) {
+    return (event) => {
+      event.preventDefault();
+
+      this.setState({
+        showModal:target,
+      });
+    }
   }
 
   setLoggedIn(loggedIn) {
@@ -173,6 +196,7 @@ class Header extends React.Component {
   }
 
   render() {
+    const { showModal } = this.state;
     const { loggedIn, showMenu } = this.state;
     return (
       <HeaderWrapper>
@@ -261,15 +285,29 @@ class Header extends React.Component {
             </AvatarContainer>
           ) : (
             <React.Fragment>
-              <ButtonRight>Sign up</ButtonRight>
+              <ButtonRight onClick={this.showModal(MODAL.SIGN_UP)}>Sign up</ButtonRight>
               <ButtonRight
                 onClick={() => {
                   this.setLoggedIn(true);
                 }}
+                onClick={this.showModal(MODAL.LOG_IN)}
               >
                 Log in
               </ButtonRight>
               <ButtonWhite>Become a tasker</ButtonWhite>
+
+              {showModal === MODAL.LOG_IN && (
+              <LogInModal 
+              onClose={this.showModal(MODAL.EMPTY)} 
+              onSignUp={this.showModal(MODAL.SIGN_UP)}
+              />
+              )}
+              {showModal === MODAL.SIGN_UP && (
+              <SignUpModal 
+              onClose={this.showModal(MODAL.EMPTY)} 
+              onLogIn={this.showModal(MODAL.LOG_IN)}
+              />
+              )}
             </React.Fragment>
           )}
           {/* {loggedIn && <div>avatar</div>}
