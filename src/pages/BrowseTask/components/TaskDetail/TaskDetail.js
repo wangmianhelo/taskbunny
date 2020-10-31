@@ -37,8 +37,14 @@ const TaskTitle = styled.div`
   padding: 1.375rem 0;
 `;
 
+const TaskSideBar = styled.div`
+  float: left;
+  margin-right: 3rem;
+`;
+
 const TaskBudget = styled.div`
   border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
   font-size: 1.125rem;
   line-height: 1.375rem;
   width: 12.5rem;
@@ -47,14 +53,78 @@ const TaskBudget = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  float: left;
-  margin-right: 3rem;
 
   & span {
     font-size: 3rem;
     font-weight: 900;
     line-height: 3.5rem;
     padding: 8px 0;
+  }
+`;
+
+const TaskOptions = styled.div`
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 500;
+  height: 2rem;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 10px 7px;
+  text-align: left;
+
+  & div {
+    display: none;
+    position: absolute;
+    left: 0;
+  }
+  & i {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      float: right;
+      padding: 3px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  &:hover div {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 10;
+    margin-top: 10px;
+    padding: 10px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      width: 9px;
+      height: 9px;
+      background: #fff;
+      border-right: 1px solid #bbc2dc;
+      border-bottom: 1px solid #bbc2dc;
+      transform: rotate(-135deg);
+    }
+  }
+  &:hover span {
+    box-sizing: border-box;
+    display: block;
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    z-index: 10;
   }
 `;
 
@@ -212,12 +282,21 @@ const TaskDetail = (props) => {
         <TaskStatus>Assigned</TaskStatus>
         <TaskStatus>Completed</TaskStatus>
         <TaskTitle>{props.title}</TaskTitle>
-        <TaskBudget>
-          Task Budget
-          <span>${props.budget}</span>
+        <TaskSideBar>
+          <TaskBudget>
+            Task Budget
+            <span>${props.budget}</span>
 
-          <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
-        </TaskBudget>
+            <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+          </TaskBudget>
+          <TaskOptions>
+            More Options <i></i>
+            <span></span>
+            <div>
+              Post a similar task
+            </div>
+          </TaskOptions>
+        </TaskSideBar>
         <TaskPostBy>
           <TaskAvatar src={props.avatar} />
           Post by <span>{props.name}</span>
@@ -240,7 +319,7 @@ const TaskDetail = (props) => {
       </TaskOffer>
 
       <TaskQuestion>
-        <h3>Question ({(props.questions || []).length})</h3>
+        <h3>Questions ({(props.questions || []).length})</h3>
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
         {(props.questions || []).map( question => (
           <Question>

@@ -18,7 +18,7 @@ const BrowseTaskContainer = styled.div`
 
 const TaskContainer = styled.div`
   width: 23rem;
-  height: calc(100vh + 144px);
+  height: calc(100vh - 214px);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 8px;
@@ -50,14 +50,20 @@ class BrowseTask extends React.Component {
   }
 
   componentDidMount() {
-    async function getTask() {
+    const getTask = async () => {
       try {
         const response = await axios.get('/task/tasks');
         console.log(response);
+        this.setState({
+          ...this.state,
+          tasks: response.data.data,
+          currentTask: response.data.data[0],
+        });
       } catch (error) {
         console.error(error);
       }
-    }
+    };
+    getTask()
   }
 
   render() {
