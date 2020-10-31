@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import DatePickerTool from "./components/DatePickerTool";
 import CurrencyInput from "react-currency-input-field";
+import axios from "axios"
 
 const Layout = styled.div`
   display: flex;
@@ -151,6 +152,26 @@ class PostTask extends React.Component {
     });
   }
 
+  handleSendTask(){
+
+    //调用后端接口，实现发送任务
+    axios.post('/task/task',{
+      "email" : '',
+      "title" : this.state.taskName,
+      "budget" : '',
+      "location" : this.state.taskAddress,
+      "date" : this.state.taskDate,
+      "details" : this.state.taskDetail
+    }).then(res=>{
+
+    });
+
+
+
+    console.log("<<<<<<<handleSendTask=========",this.state);
+  }
+
+
   render() {
     const {
       taskName,
@@ -261,9 +282,7 @@ class PostTask extends React.Component {
               </RecRight>
             </YellowRectangle>
             <button
-              onClick={() => {
-                console.log(this.state);
-              }}
+              onClick={this.handleSendTask.bind(this)}
             >
               Get quotes
             </button>
