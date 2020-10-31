@@ -10,6 +10,7 @@ import Notification from "./pages/Notification";
 import Account from "./pages/Account";
 import Near from "./pages/Near";
 import Map from './pages/Map'
+import DashBoard from './pages/Dashboard';
 function App() {
   return (
     <Fragment>
@@ -24,7 +25,7 @@ function App() {
             <Route path="/browse-tasks" exact component={BrowseTask} />
             <Route path="/notification" exact component={Notification}/>
             <Route path="/near" exact component={Near}/>
-           
+            <Route path="/dashboard" exact component={DashBoard}/>
           </Switch>
         </BrowserRouter>
     </Fragment>
