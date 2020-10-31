@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+
 import MyDashboard from "./pages/MyDashboard";
 import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
@@ -20,6 +21,7 @@ import Header from "./pages/Home/components/Header";
 function App() {
   return (
     <Fragment>
+
         <GlobalStyle />
         <Header />
         <BrowserRouter>
@@ -35,6 +37,7 @@ function App() {
             <Route path="/dashboard" exact component={DashBoard}/>
           </Switch>
         </BrowserRouter>
+
     </Fragment>
   );
 }

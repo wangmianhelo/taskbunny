@@ -24,7 +24,7 @@ class Account extends React.Component{
             phoneNumber:'',
             location: '',
             email:'',
-            avatar: null,
+  avatar: null,
             
             invalid_email: '',
         }
@@ -60,10 +60,10 @@ class Account extends React.Component{
     }
 
 
-
     render(){
         return (
             <AccountWrapper>
+
             <AccInfo firstName={this.state.firstName} lastName={this.state.lastName}  phoneNumber={this.state.phoneNumber}  location={this.state.location} email={this.state.email } invalid_email={this.state.invalid_email} handleFile={this.handleFile.bind(this)}  checkEmail={this.checkEmail.bind(this)} onTodoChange ={this.onTodoChange.bind(this)} updateInfo= {this.updateInfo.bind(this)} />
             <AvatarBlock img={this.state.imgUrl}/>
         </AccountWrapper>
@@ -71,20 +71,22 @@ class Account extends React.Component{
     }
     componentDidMount(){
         
-       
+
         
         axios.get('/user/info/wm194@qq.com').then((res) =>{
             
             this.setState({
+
                 imgUrl: res.data.data.avatar,
                 firstName: res.data.data.firstName,
                 lastName: res.data.data.lastName,
                 phoneNumber: res.data.data.phoneNumber,
                 location: res.data.data.location,
                 email:  res.data.data.email,
+
                 avatar: ''
             });
-            console.log(this.state.imgUrl)
+
         })
     }
     onTodoChange(e){
