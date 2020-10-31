@@ -23,8 +23,8 @@ function App() {
     <Fragment>
 
         <GlobalStyle />
-        <Header />
         <BrowserRouter>
+          <Header />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/map" exact component={Map}/>

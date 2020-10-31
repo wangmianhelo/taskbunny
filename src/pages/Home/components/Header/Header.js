@@ -297,14 +297,14 @@ class Header extends React.Component {
               <ButtonWhite>Become a tasker</ButtonWhite>
 
               {showModal === MODAL.LOG_IN && (
-              <LogInModal 
-              onClose={this.showModal(MODAL.EMPTY)} 
+              <LogInModal
+              onClose={this.showModal(MODAL.EMPTY)}
               onSignUp={this.showModal(MODAL.SIGN_UP)}
               />
               )}
               {showModal === MODAL.SIGN_UP && (
-              <SignUpModal 
-              onClose={this.showModal(MODAL.EMPTY)} 
+              <SignUpModal
+              onClose={this.showModal(MODAL.EMPTY)}
               onLogIn={this.showModal(MODAL.LOG_IN)}
               />
               )}
