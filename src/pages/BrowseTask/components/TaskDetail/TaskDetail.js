@@ -27,6 +27,9 @@ const TaskStatus = styled.div`
     background-color: rgba(0,0,0,0.5);
     margin-right: 4px;
   }
+  &.active::before {
+    background-color: #5EDEFC;
+  }
 `;
 
 const TaskTitle = styled.div`
@@ -37,8 +40,14 @@ const TaskTitle = styled.div`
   padding: 1.375rem 0;
 `;
 
+const TaskSideBar = styled.div`
+  float: left;
+  margin-right: 3rem;
+`;
+
 const TaskBudget = styled.div`
   border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
   font-size: 1.125rem;
   line-height: 1.375rem;
   width: 12.5rem;
@@ -47,14 +56,78 @@ const TaskBudget = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  float: left;
-  margin-right: 3rem;
 
   & span {
     font-size: 3rem;
     font-weight: 900;
     line-height: 3.5rem;
     padding: 8px 0;
+  }
+`;
+
+const TaskOptions = styled.div`
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 500;
+  height: 2rem;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 10px 7px;
+  text-align: left;
+
+  & div {
+    display: none;
+    position: absolute;
+    left: 0;
+  }
+  & i {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      float: right;
+      padding: 3px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  &:hover div {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 10;
+    margin-top: 10px;
+    padding: 10px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      width: 9px;
+      height: 9px;
+      background: #fff;
+      border-right: 1px solid #bbc2dc;
+      border-bottom: 1px solid #bbc2dc;
+      transform: rotate(-135deg);
+    }
+  }
+  &:hover span {
+    box-sizing: border-box;
+    display: block;
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    z-index: 10;
   }
 `;
 
@@ -141,6 +214,48 @@ const TaskOffer = styled.div`
     font-weight: 700;
     line-height: 1.75rem;
   }
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+`;
+
+const Offer = styled.div`
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: 1rem 0;
+  margin-right: 0.5rem;
+  padding-top: 10px;
+  float: left;
+  width: 31.3333%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+`;
+
+const OffererAvatar = styled.div`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 2rem;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  float: left;
+`;
+
+const OffererName = styled.div`
+  font-weight: 700;
+`;
+
+const OfferPrice = styled.div`
+  background-color: #f6f8fd;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 10px;
 `;
 
 const TaskQuestion = styled.div`
@@ -157,7 +272,7 @@ const Question = styled.div`
   line-height: 1.25rem;
   margin: 1rem 0;
   padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 
 `;
 
@@ -208,22 +323,31 @@ const TaskDetail = (props) => {
   return (
     <div>
       <TaskSummary>
-        <TaskStatus>Open</TaskStatus>
-        <TaskStatus>Assigned</TaskStatus>
-        <TaskStatus>Completed</TaskStatus>
+        <TaskStatus className={props.status===1 && "active"}>Open</TaskStatus>
+        <TaskStatus className={props.status===2 && "active"}>Assigned</TaskStatus>
+        <TaskStatus className={props.status===3 && "active"}>Completed</TaskStatus>
         <TaskTitle>{props.title}</TaskTitle>
-        <TaskBudget>
-          Task Budget
-          <span>${props.budget}</span>
+        <TaskSideBar>
+          <TaskBudget>
+            Task Budget
+            <span>${props.budget}</span>
 
-          <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
-        </TaskBudget>
+            <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+          </TaskBudget>
+          <TaskOptions>
+            More Options <i></i>
+            <span></span>
+            <div>
+              Post a similar task
+            </div>
+          </TaskOptions>
+        </TaskSideBar>
         <TaskPostBy>
           <TaskAvatar src={props.avatar} />
           Post by <span>{props.name}</span>
         </TaskPostBy>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
-          <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
+          <TaskDate><img src={dateImg} alt="date" />{new Date(Date.parse(props.date)).toLocaleDateString()}</TaskDate>
       </TaskSummary>
       <TaskContent>
         <h3>Details</h3>
@@ -234,17 +358,28 @@ const TaskDetail = (props) => {
         ))}
       </TaskContent>
       <TaskOffer>
-        <h3>Offers</h3>
-
+        <h3>Offers ({(props.offers || []).length})</h3>
         <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+        <div>
+          {(props.offers || []).map( offer => (
+            <Offer>
+              {//<OffererAvatar src={offer.avatar} />
+              }
+              <OffererAvatar src={taskerImg} />
+              <OffererName>{offer.name}</OffererName>
+              <OfferPrice>Offer Price: {offer.budget}</OfferPrice>
+            </Offer>
+          ))}
+        </div>
       </TaskOffer>
-
       <TaskQuestion>
-        <h3>Question ({(props.questions || []).length})</h3>
+        <h3>Questions ({(props.questions || []).length})</h3>
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
         {(props.questions || []).map( question => (
           <Question>
-            <QuestionerAvatar src={question.avatar} />
+            {//<QuestionerAvatar src={question.avatar} />
+            }
+            <QuestionerAvatar src={taskerImg} />
             <QuestionerName>{question.name}</QuestionerName>
             <QuestionContent>{question.content}</QuestionContent>
           </Question>

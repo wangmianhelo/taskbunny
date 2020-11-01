@@ -94,6 +94,12 @@ const TaskStatus = styled.div`
   float:right;
 `;
 
+const statuses = [
+  "Open",
+  "Assigned",
+  "Completed",
+]
+
 const Task = (props) => {
   return (
     <TaskCard>
@@ -102,8 +108,8 @@ const Task = (props) => {
         <TaskAvatar src={taskerImg}></TaskAvatar>
         <TaskTitle>{props.title}</TaskTitle>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
-        <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
-        <TaskStatus>{props.status}</TaskStatus>
+        <TaskDate><img src={dateImg} alt="date" />{new Date(Date.parse(props.date)).toLocaleDateString()}</TaskDate>
+        <TaskStatus>{statuses[(props.status-1)]}</TaskStatus>
       </TaskLink>
     </TaskCard>
   );
