@@ -49,20 +49,22 @@ class Notification extends Component {
         };
     }
     componentDidUpdate(){
-        
+        let user = this.props.value;
+        axios.post('/notification/all',{ 
+            'email' : user.user.enail
+        }).then(res=>{
+            if(res.data.desc == 'succ'){
+                let quesList = res.data.data;
+                if(this.state.questionList.length == 0){
+                    this.setState({
+                        questionList : quesList
+                    });
+                }
+            }
+        });
     }
     render(){
-        // let user = this.props.value;
-        // axios.post('/notification/all',{ 
-        //     'email' : 'lxf101@126.com'    //user.user.enail
-        // }).then(res=>{
-        //     if(res.data.desc == 'succ'){
-        //         let quesList = res.data.data;
-        //         this.setState({
-        //             questionList : quesList
-        //         });
-        //     }
-        //});
+        
 
         const { questionList} = this.state;
         return (
