@@ -27,6 +27,9 @@ const TaskStatus = styled.div`
     background-color: rgba(0,0,0,0.5);
     margin-right: 4px;
   }
+  &.active::before {
+    background-color: #5EDEFC;
+  }
 `;
 
 const TaskTitle = styled.div`
@@ -278,9 +281,9 @@ const TaskDetail = (props) => {
   return (
     <div>
       <TaskSummary>
-        <TaskStatus>Open</TaskStatus>
-        <TaskStatus>Assigned</TaskStatus>
-        <TaskStatus>Completed</TaskStatus>
+        <TaskStatus className={props.status===1 && "active"}>Open</TaskStatus>
+        <TaskStatus className={props.status===2 && "active"}>Assigned</TaskStatus>
+        <TaskStatus className={props.status===3 && "active"}>Completed</TaskStatus>
         <TaskTitle>{props.title}</TaskTitle>
         <TaskSideBar>
           <TaskBudget>

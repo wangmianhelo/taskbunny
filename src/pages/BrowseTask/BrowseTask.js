@@ -35,6 +35,9 @@ const TaskContainer = styled.div`
 `;
 
 const TaskDetailContainer = styled.div`
+  box-sizing: border-box;
+  height: calc(100vh - 214px);
+  overflow: auto;
   padding: 1.375rem 2rem;
   width: 58rem;
 `;
