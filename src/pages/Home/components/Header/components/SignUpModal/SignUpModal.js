@@ -7,7 +7,7 @@ import Button from '../Button'
 import FormItem from '../FormItem'
 import Input from '../Input'
 import rabbit from "../../elements/logo.svg";
-import axios from "axios"
+import api from '../../../../../../api'
 
 const LogoContainer = styled.div`
   width: 85.84px;
@@ -132,7 +132,7 @@ class SignUpModal extends React.Component {
       return;
     }
     //调用后端接口，实现注册功能
-    axios.post('/user/signUp',{
+    api.post('/user/signUp',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{

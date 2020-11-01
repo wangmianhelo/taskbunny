@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import noticeAvator from './images/logo.png';
-import axios from "axios"
+import api from '../../api';
 import withAuth from '../../components/Auth/withAuth'
 
 const NotificationWrap = styled.div `
@@ -50,8 +50,8 @@ class Notification extends Component {
     }
     componentDidUpdate(){
         let user = this.props.value;
-        axios.post('/notification/all',{ 
-            'email' : user.user.enail
+        api.post('/notification/all',{ 
+            'email' : user.user.email
         }).then(res=>{
             if(res.data.desc == 'succ'){
                 let quesList = res.data.data;

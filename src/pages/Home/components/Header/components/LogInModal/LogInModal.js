@@ -8,7 +8,7 @@ import FormItem from '../FormItem'
 import Input from '../Input'
 import rabbit from "../../elements/logo.svg";
 import axios from "axios"
-import {Redirect} from "react-router-dom";
+import api from '../../../../../../api'
 
 const LogoContainer = styled.div`
   width: 85.84px;
@@ -108,13 +108,13 @@ class LogInModal extends React.Component {
     }
 
     //调用后端接口，实现登录
-    axios.post('/login',{
+    api.post('/login',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
         //将后端返回的token放置在localStorage中
-        localStorage.setItem('token',res.data.data.token);
+        localStorage.setItem('AUTH_TOKEN',res.data.data.token);
         //登录成功后，应跳转到mydashboard页面，需要补充代码
         
       }
