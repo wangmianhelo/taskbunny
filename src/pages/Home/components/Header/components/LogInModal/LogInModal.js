@@ -114,14 +114,9 @@ class LogInModal extends React.Component {
       if(res.status == 200){
         //将后端返回的token放置在localStorage中
         localStorage.setItem('token',res.data.data.token);
-        
-
+        window.location.reload();
       }
-      console.log("<<<<<<<<<res===login======",res);
     });
-
-
-
     console.log('Log In...', formData)
   }
 

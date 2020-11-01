@@ -30,7 +30,6 @@ class App extends React.Component{
         <GlobalStyle />
 
         <Auth>
-        <Header />
         <BrowserRouter>
           <Header />
           <Switch>

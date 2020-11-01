@@ -7,6 +7,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter, Link } from "react-router-dom";
 import SignUpModal from './components/SignUpModal';
 import LogInModal from './components/LogInModal';
+import withAuth from '../../../../components/Auth/withAuth';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -174,6 +175,7 @@ class Header extends React.Component {
   }
 
   showModal(target) {
+    console.log("<<<<<<<<target======",target);
     return (event) => {
       event.preventDefault();
 
@@ -194,10 +196,16 @@ class Header extends React.Component {
       showMenu,
     });
   }
+  shouldComponentUpdate(){
+    console.log("<<<<shouldComponentUpdate<<<<header=========",this.props.value);
+    return true;
+  }
 
   render() {
     const { showModal } = this.state;
     const { loggedIn, showMenu } = this.state;
+
+    console.log("<<<<<<<<<render===========",this.props.value);
     return (
       <HeaderWrapper>
         {showMenu && (
@@ -330,4 +338,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withAuth(Header);

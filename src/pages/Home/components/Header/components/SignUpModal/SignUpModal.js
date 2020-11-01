@@ -124,6 +124,7 @@ class SignUpModal extends React.Component {
 
   handleFormSubmit(event) {
     const {formData} = this.state;
+    const {onLogIn} = this.props;
     event.preventDefault();
 
     if (!this.isFormValid()){
@@ -136,12 +137,9 @@ class SignUpModal extends React.Component {
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
-        //将后端返回的token放置在localStorage中
-        localStorage.setItem('token',res.data.token);
+        //注册成功后，打开登录页面...需要补充
         
-
       }
-      console.log("<<<<<<<<<res=========",res);
     });
     console.log('Sign Up...', formData)
   }
