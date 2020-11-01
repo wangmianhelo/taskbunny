@@ -157,7 +157,7 @@ class PostTask extends React.Component {
 
     //调用后端接口，实现发送任务
     axios.post('/task/task',{
-      "email" : this.props.value.user.enail,
+      "email" : this.props.value.user.email,
       "title" : this.state.taskName,
       "budget" : parseInt(this.state.taskMoney),
       "location" : this.state.taskAddress,
@@ -165,7 +165,8 @@ class PostTask extends React.Component {
       "details" : this.state.taskDetail
     }).then(res=>{
       if(res.status == 200){
-        //跳转到任务浏览页面，需要补充...
+        //跳转到任务浏览页面 —— /browse-tasks 的页面，需要补充...
+
       }
       
     });

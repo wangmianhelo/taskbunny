@@ -51,7 +51,7 @@ class Notification extends Component {
     componentDidUpdate(){
         let user = this.props.value;
         axios.post('/notification/all',{ 
-            'email' : user.user.enail
+            'email' : user.user.email
         }).then(res=>{
             if(res.data.desc == 'succ'){
                 let quesList = res.data.data;
