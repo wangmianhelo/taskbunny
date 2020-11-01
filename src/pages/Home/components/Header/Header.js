@@ -200,7 +200,7 @@ class Header extends React.Component {
   render() {
     const { showModal } = this.state;
     let { loggedIn, showMenu } = this.state;
-
+    
     console.log("<<<<<<<<<render===========",this.props.value);
     return (
       <HeaderWrapper>
