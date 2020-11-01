@@ -164,6 +164,7 @@ const MODAL = {
 class Header extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       loggedIn: false,
       showMenu: false,
@@ -175,7 +176,6 @@ class Header extends React.Component {
   }
 
   showModal(target) {
-    console.log("<<<<<<<<target======",target);
     return (event) => {
       event.preventDefault();
 
@@ -196,14 +196,10 @@ class Header extends React.Component {
       showMenu,
     });
   }
-  shouldComponentUpdate(){
-    console.log("<<<<shouldComponentUpdate<<<<header=========",this.props.value);
-    return true;
-  }
-
+  
   render() {
     const { showModal } = this.state;
-    const { loggedIn, showMenu } = this.state;
+    let { loggedIn, showMenu } = this.state;
 
     console.log("<<<<<<<<<render===========",this.props.value);
     return (

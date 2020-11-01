@@ -3,6 +3,7 @@ import styled from "styled-components";
 import DatePickerTool from "./components/DatePickerTool";
 import CurrencyInput from "react-currency-input-field";
 import axios from "axios"
+import withAuth from '../../components/Auth/withAuth';
 
 const Layout = styled.div`
   display: flex;
@@ -156,19 +157,19 @@ class PostTask extends React.Component {
 
     //调用后端接口，实现发送任务
     axios.post('/task/task',{
-      "email" : '',
+      "email" : this.props.value.user.enail,
       "title" : this.state.taskName,
-      "budget" : '',
+      "budget" : parseInt(this.state.taskMoney),
       "location" : this.state.taskAddress,
       "date" : this.state.taskDate,
       "details" : this.state.taskDetail
     }).then(res=>{
-
+      if(res.status == 200){
+        //跳转到任务浏览页面，需要补充...
+      }
+      
     });
 
-
-
-    console.log("<<<<<<<handleSendTask=========",this.state);
   }
 
 
@@ -293,4 +294,4 @@ class PostTask extends React.Component {
   }
 }
 
-export default PostTask;
+export default withAuth(PostTask);

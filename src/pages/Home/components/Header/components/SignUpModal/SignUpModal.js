@@ -137,7 +137,7 @@ class SignUpModal extends React.Component {
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
-        //注册成功后，打开登录页面...需要补充
+        //注册成功后，打开登录页面...需要补充代码
         
       }
     });
