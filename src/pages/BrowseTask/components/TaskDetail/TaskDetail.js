@@ -214,6 +214,48 @@ const TaskOffer = styled.div`
     font-weight: 700;
     line-height: 1.75rem;
   }
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+`;
+
+const Offer = styled.div`
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: 1rem 0;
+  margin-right: 0.5rem;
+  padding-top: 10px;
+  float: left;
+  width: 31.3333%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+`;
+
+const OffererAvatar = styled.div`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 2rem;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  float: left;
+`;
+
+const OffererName = styled.div`
+  font-weight: 700;
+`;
+
+const OfferPrice = styled.div`
+  background-color: #f6f8fd;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 10px;
 `;
 
 const TaskQuestion = styled.div`
@@ -316,11 +358,20 @@ const TaskDetail = (props) => {
         ))}
       </TaskContent>
       <TaskOffer>
-        <h3>Offers</h3>
-
+        <h3>Offers ({(props.offers || []).length})</h3>
         <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+        <div>
+          {(props.offers || []).map( offer => (
+            <Offer>
+              {//<OffererAvatar src={offer.avatar} />
+              }
+              <OffererAvatar src={taskerImg} />
+              <OffererName>{offer.name}</OffererName>
+              <OfferPrice>Offer Price: {offer.budget}</OfferPrice>
+            </Offer>
+          ))}
+        </div>
       </TaskOffer>
-
       <TaskQuestion>
         <h3>Questions ({(props.questions || []).length})</h3>
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
