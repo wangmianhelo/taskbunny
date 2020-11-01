@@ -31,6 +31,7 @@ class App extends React.Component{
 
         <Auth>
         <BrowserRouter>
+
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />

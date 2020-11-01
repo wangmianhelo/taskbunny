@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import AvatarBlock from './components/AvatarBlock';
 import AccInfo from './components/AccInfo';
-import axios from "axios"
-
+import api from '../../api'
 import withAuth from '../../components/Auth/withAuth'
 
 
@@ -21,7 +20,7 @@ class Account extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            firstName : '',
+            firstName : null,
             lastName: '',
             phoneNumber:'',
             location: '',
@@ -53,7 +52,7 @@ class Account extends React.Component{
         },() =>{
             const data = new FormData()
             data.append('file', this.state.avatar)
-            axios.post("/upload/wm194@qq.com", data).then(res =>{
+            api.post("/upload/wm194@qq.com", data).then(res =>{
                 this.setState({
                     imgUrl: res.data.avatar
                 })
@@ -73,12 +72,13 @@ class Account extends React.Component{
         )
     }
 
-    shouldComponentUpdate(){
-        console.log(this.props.value)
-
-        axios.get('/user/info/wm194@qq.com').then((res) =>{
-            
-            this.setState({
+    componentDidUpdate(){
+        const email = this.props.value.user.email
+        console.log(email)
+        api.get(`/user/info/${email}`).then((res) =>{
+            console.log(this.state.firstName)
+            if(this.state.firstName===null){
+                this.setState({
 
                 imgUrl: res.data.data.avatar,
                 firstName: res.data.data.firstName,
@@ -90,6 +90,8 @@ class Account extends React.Component{
                 avatar: ''
             });
 
+            }
+        
         })
     }
     onTodoChange(e){
@@ -103,7 +105,7 @@ class Account extends React.Component{
 
     updateInfo(){
         const {firstName, lastName,phoneNumber,location,email} = this.state
-        axios.put('user/profile',
+        api.put('user/profile',
         {
             "firstName": firstName,
             "lastName": lastName,

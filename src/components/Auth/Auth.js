@@ -7,7 +7,7 @@ class Auth extends React.Component{
       super(props)
       this.state ={
         user: null,
-        loading:false
+        loading:true
       }
 
   }
@@ -16,7 +16,8 @@ class Auth extends React.Component{
 
     axios.get('/user/Auth').then((res) =>{
       this.setState({
-        user: res.data
+        user: res.data,
+        loading:false
       })
     })
   }
