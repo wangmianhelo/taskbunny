@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../Home/components/Header";
 import Task from "./components/Task";
 import TaskDetail from "./components/TaskDetail";
-import axios from "axios";
+import api from "../../api";
 import avatarTrader from "./components/Task/pic/avatar-trader.png";
 import detailImg1 from "./components/TaskDetail/pic/detailImg1.png";
 import detailImg2 from "./components/TaskDetail/pic/detailImg2.png";
@@ -55,7 +55,7 @@ class BrowseTask extends React.Component {
   componentDidMount() {
     const getTask = async () => {
       try {
-        const response = await axios.get('/task/tasks');
+        const response = await api.get('/task/tasks');
         console.log(response);
         this.setState({
           ...this.state,
