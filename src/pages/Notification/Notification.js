@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import noticeAvator from './images/logo.png';
+import axios from "axios"
+import withAuth from '../../components/Auth/withAuth'
 
 const NotificationWrap = styled.div `
     margin-left:100px;
@@ -40,32 +42,46 @@ const NoticeTask = styled.a `
 `
 
 class Notification extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {
+            'questionList' : []
+        };
+    }
+    componentDidUpdate(){
+        let user = this.props.value;
+        axios.post('/notification/all',{ 
+            'email' : user.user.enail
+        }).then(res=>{
+            if(res.data.desc == 'succ'){
+                let quesList = res.data.data;
+                if(this.state.questionList.length == 0){
+                    this.setState({
+                        questionList : quesList
+                    });
+                }
+            }
+        });
+    }
     render(){
+        
+
+        const { questionList} = this.state;
         return (
             <NotificationWrap>
                 <NotificationHead>Notification</NotificationHead>
                 <NotificationList>
-                    <NotificationItem>
-                        <NoticeImg src={noticeAvator}></NoticeImg>
-                        <NoticeText>Eric commented on <NoticeTask>Move my sofa</NoticeTask></NoticeText>
-                    </NotificationItem>
-                    <NotificationItem>
-                        <NoticeImg src={noticeAvator}></NoticeImg>
-                        <NoticeText>Eric commented on <NoticeTask>Move my sofa</NoticeTask></NoticeText>
-                    </NotificationItem>
-                    <NotificationItem>
-                        <NoticeImg src={noticeAvator}></NoticeImg>
-                        <NoticeText>Eric commented on <NoticeTask>Move my sofa</NoticeTask></NoticeText>
-                    </NotificationItem>
-                    <NotificationItem>
-                        <NoticeImg src={noticeAvator}></NoticeImg>
-                        <NoticeText>Eric commented on <NoticeTask>Move my sofa</NoticeTask></NoticeText>
-                    </NotificationItem>
+                    {questionList.map((item, index) => {
+                        return <NotificationItem key={index}>
+                                <NoticeImg src={item.avatar}></NoticeImg>
+                                <NoticeText>{item.content}</NoticeText>
+                            </NotificationItem>
+                        })
+                    }
                 </NotificationList>
             </NotificationWrap>
         )
     }
 }
 
-export default Notification;
+export default withAuth(Notification);
