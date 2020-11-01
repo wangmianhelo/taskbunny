@@ -227,7 +227,7 @@ const Question = styled.div`
   line-height: 1.25rem;
   margin: 1rem 0;
   padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 
 `;
 
@@ -302,7 +302,7 @@ const TaskDetail = (props) => {
           Post by <span>{props.name}</span>
         </TaskPostBy>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
-          <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
+          <TaskDate><img src={dateImg} alt="date" />{new Date(Date.parse(props.date)).toLocaleDateString()}</TaskDate>
       </TaskSummary>
       <TaskContent>
         <h3>Details</h3>
@@ -323,7 +323,9 @@ const TaskDetail = (props) => {
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
         {(props.questions || []).map( question => (
           <Question>
-            <QuestionerAvatar src={question.avatar} />
+            {//<QuestionerAvatar src={question.avatar} />
+            }
+            <QuestionerAvatar src={taskerImg} />
             <QuestionerName>{question.name}</QuestionerName>
             <QuestionContent>{question.content}</QuestionContent>
           </Question>

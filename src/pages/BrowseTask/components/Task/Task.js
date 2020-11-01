@@ -102,7 +102,7 @@ const Task = (props) => {
         <TaskAvatar src={taskerImg}></TaskAvatar>
         <TaskTitle>{props.title}</TaskTitle>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
-        <TaskDate><img src={dateImg} alt="date" />{props.date}</TaskDate>
+        <TaskDate><img src={dateImg} alt="date" />{new Date(Date.parse(props.date)).toLocaleDateString()}</TaskDate>
         <TaskStatus>{props.status}</TaskStatus>
       </TaskLink>
     </TaskCard>
