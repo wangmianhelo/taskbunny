@@ -4,6 +4,8 @@ import AvatarBlock from './components/AvatarBlock';
 import AccInfo from './components/AccInfo';
 import axios from "axios"
 
+import withAuth from '../../components/Auth/withAuth'
+
 
 const AccountWrapper = styled.div `
 width: 80%;
@@ -64,15 +66,15 @@ class Account extends React.Component{
     render(){
         return (
             <AccountWrapper>
+                
             <AccInfo firstName={this.state.firstName} lastName={this.state.lastName}  phoneNumber={this.state.phoneNumber}  location={this.state.location} email={this.state.email } invalid_email={this.state.invalid_email} handleFile={this.handleFile.bind(this)}  checkEmail={this.checkEmail.bind(this)} onTodoChange ={this.onTodoChange.bind(this)} updateInfo= {this.updateInfo.bind(this)} />
             <AvatarBlock img={this.state.imgUrl}/>
+            
         </AccountWrapper>
         )
     }
-    componentDidMount(){
-        
-       
-        
+    shouldComponentUpdate(){
+        console.log(this.props.value)
         axios.get('/user/info/wm194@qq.com').then((res) =>{
             
             this.setState({
@@ -116,9 +118,7 @@ class Account extends React.Component{
         })
     ))
     }
-
-
 }
 
 
-export default Account;
+export default withAuth(Account);
