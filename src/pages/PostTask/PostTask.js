@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import DatePickerTool from "./components/DatePickerTool";
 import CurrencyInput from "react-currency-input-field";
-import axios from "axios"
+import api from '../../api';
 import withAuth from '../../components/Auth/withAuth';
 
 const Layout = styled.div`
@@ -156,7 +156,7 @@ class PostTask extends React.Component {
   handleSendTask(){
 
     //调用后端接口，实现发送任务
-    axios.post('/task/task',{
+    api.post('/task/task',{
       "email" : this.props.value.user.email,
       "title" : this.state.taskName,
       "budget" : parseInt(this.state.taskMoney),
