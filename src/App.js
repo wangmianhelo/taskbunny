@@ -2,6 +2,7 @@ import React, {Component, Fragment } from "react";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+
 import MyDashboard from "./pages/MyDashboard";
 import PostTask from "./pages/PostTask/PostTask";
 import BrowseTask from "./pages/BrowseTask";
@@ -27,9 +28,11 @@ class App extends React.Component{
     <Fragment>
 
         <GlobalStyle />
+
         <Auth>
         <Header />
         <BrowserRouter>
+          <Header />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/map" exact component={Map}/>

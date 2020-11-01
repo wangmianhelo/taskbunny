@@ -64,7 +64,6 @@ class BrowseTask extends React.Component {
     const { error, tasks, currentTask, } = this.state;
     return (
       <div>
-        <Header />
         <BrowseTaskContainer>
           <TaskContainer>
               {tasks.map(task => (

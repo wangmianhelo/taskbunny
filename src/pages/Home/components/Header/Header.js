@@ -141,11 +141,24 @@ const MenuWrapper = styled.div`
   }
 `;
 
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 const MODAL = {
   LOG_IN: 'LOG_IN',
   SIGN_UP: 'SIGN_UP',
   EMPTY: '',
 }
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -205,9 +218,27 @@ class Header extends React.Component {
               >
                 Log in
               </div>
-              <div>Home</div>
               <div>
-                <Link to="/post-a-task">Post a Task</Link>
+                <StyledLink
+                  to="/"
+                  style={{ color: "white" }}
+                  onClick={() => {
+                    this.setShowMenu(false);
+                  }}
+                >
+                  Home
+                </StyledLink>
+              </div>
+              <div>
+                <StyledLink
+                  to="/post-a-task"
+                  style={{ color: "white" }}
+                  onClick={() => {
+                    this.setShowMenu(false);
+                  }}
+                >
+                  Post a task
+                </StyledLink>
               </div>
               <div>Categories</div>
               <div>Browse tasks</div>
@@ -218,9 +249,15 @@ class Header extends React.Component {
 
         <HeaderLeft>
           <LogoContainer>
-            <img src={rabbit} alt="taskbunny" />
+            <Link to="/">
+              <img src={rabbit} alt="taskbunny" />
+            </Link>
           </LogoContainer>
-          <ButtonYellow>Post a task</ButtonYellow>
+          <ButtonYellow>
+            <StyledLink to="/post-a-task" style={{ color: "black" }}>
+              Post a task
+            </StyledLink>
+          </ButtonYellow>
           <ButtonLeft>Categories</ButtonLeft>
           <ButtonLeft>Browse tasks</ButtonLeft>
           <ButtonLeft>How it works</ButtonLeft>
@@ -260,14 +297,14 @@ class Header extends React.Component {
               <ButtonWhite>Become a tasker</ButtonWhite>
 
               {showModal === MODAL.LOG_IN && (
-              <LogInModal 
-              onClose={this.showModal(MODAL.EMPTY)} 
+              <LogInModal
+              onClose={this.showModal(MODAL.EMPTY)}
               onSignUp={this.showModal(MODAL.SIGN_UP)}
               />
               )}
               {showModal === MODAL.SIGN_UP && (
-              <SignUpModal 
-              onClose={this.showModal(MODAL.EMPTY)} 
+              <SignUpModal
+              onClose={this.showModal(MODAL.EMPTY)}
               onLogIn={this.showModal(MODAL.LOG_IN)}
               />
               )}
