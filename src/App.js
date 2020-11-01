@@ -30,8 +30,9 @@ class App extends React.Component{
         <GlobalStyle />
 
         <Auth>
-        <Header />
+        
         <BrowserRouter>
+
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
