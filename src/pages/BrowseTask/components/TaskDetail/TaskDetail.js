@@ -214,6 +214,10 @@ const TaskOffer = styled.div`
     font-weight: 700;
     line-height: 1.75rem;
   }
+`;
+
+const OfferWrapper = styled.div`
+  margin-bottom: 1rem;
   &:after {
     content: '';
     display: table;
@@ -360,7 +364,7 @@ const TaskDetail = (props) => {
       <TaskOffer>
         <h3>Offers ({(props.offers || []).length})</h3>
         <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
-        <div>
+        <OfferWrapper>
           {(props.offers || []).map( offer => (
             <Offer>
               {//<OffererAvatar src={offer.avatar} />
@@ -370,7 +374,7 @@ const TaskDetail = (props) => {
               <OfferPrice>Offer Price: {offer.budget}</OfferPrice>
             </Offer>
           ))}
-        </div>
+        </OfferWrapper>
       </TaskOffer>
       <TaskQuestion>
         <h3>Questions ({(props.questions || []).length})</h3>
