@@ -396,7 +396,7 @@ const TaskDetail = (props) => {
       </SignIn>
 
       {
-        showModal && <MakeOfferModal task={props} onClose={() => setShowModal(false)}></MakeOfferModal>
+        showModal && <MakeOfferModal handleRefresh={props.handleRefresh} task={props} onClose={() => setShowModal(false)}></MakeOfferModal>
       }
     </div>
   );

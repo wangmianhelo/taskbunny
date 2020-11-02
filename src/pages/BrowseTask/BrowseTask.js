@@ -71,6 +71,9 @@ class BrowseTask extends React.Component {
 
   render() {
     const { error, tasks, currentTask, } = this.state;
+    const handleRefresh = () => {
+
+    };
     return (
       <div>
         <BrowseTaskContainer>
@@ -81,7 +84,8 @@ class BrowseTask extends React.Component {
               ))}
           </TaskContainer>
           <TaskDetailContainer>
-            <TaskDetail {...currentTask} />
+            <TaskDetail {...currentTask}
+              handleRefresh={handleRefresh} />
           </TaskDetailContainer>
         </BrowseTaskContainer>
       </div>

@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import api from "../../../../api";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Bronze from "./pic/bronze.png";
@@ -127,11 +128,28 @@ const SubmitButton = styled.button`
   height: 2.875rem;
 `;
 
-const submitTask = (task) => {
-  // TODO
-}
+const submitTask = async (task, price, onClose, handleRefresh) => {
+  try {
+    const response = await api.post(`task/offers/${task._id}`, {email:task.email, budget:price});
+    onClose();
+    handleRefresh();
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-const MakeOfferModal = ({ task, onClose }) => {
+const MakeOfferModal = ({ task, onClose, handleRefresh }) => {
+  const [price, setPrice] = useState(0);
+
+  const handleChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const serviceFee = parseFloat(price)*0.22;
+
+  const receiveFee = price - serviceFee;
+
   return (
     <Overlay onClick={ onClose }>
       <Modal onClick={ (event) => event.stopPropagation() }>
@@ -141,10 +159,10 @@ const MakeOfferModal = ({ task, onClose }) => {
         </Header>
         <Body>
           <Offer>Your offer
-            <div><span>$</span><OfferInput></OfferInput></div>
+            <div><span>$</span><OfferInput value={price} onChange={handleChange}/></div>
           </Offer>
-          <ServiceFee>Bronze service fee<span>-$8.80</span></ServiceFee>
-          <ReceiveFee>You'll receive<span>$31.20</span></ReceiveFee>
+          <ServiceFee>Bronze service fee<span>-$ {serviceFee}</span></ServiceFee>
+          <ReceiveFee>You'll receive<span>$ {receiveFee}</span></ReceiveFee>
           <ServiceTier>
             <div>Great work - earn more and enjoy a lower service fee!</div>
             <img src={Bronze} alt="" />
@@ -154,7 +172,7 @@ const MakeOfferModal = ({ task, onClose }) => {
           </ServiceTier>
         </Body>
         <Footer>
-          <SubmitButton onClick={ () => submitTask(task) }>Submit</SubmitButton>
+          <SubmitButton onClick={ () => submitTask(task, price, onClose, handleRefresh) }>Submit</SubmitButton>
         </Footer>
       </Modal>
     </Overlay>
