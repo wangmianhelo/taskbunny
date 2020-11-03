@@ -25,7 +25,7 @@ class Account extends React.Component{
             phoneNumber:'',
             location: '',
             email:'',
-  avatar: null,
+            avatar: null,
             
             invalid_email: '',
         }
@@ -72,12 +72,14 @@ class Account extends React.Component{
         )
     }
 
-    componentDidUpdate(){
-        const email = this.props.value.user.email
-        console.log(email)
+
+
+    componentWillReceiveProps(newprops){
+        const email = newprops.value.user.email
+     
         api.get(`/user/info/${email}`).then((res) =>{
             console.log(this.state.firstName)
-            if(this.state.firstName===null){
+           
                 this.setState({
 
                 imgUrl: res.data.data.avatar,
@@ -90,10 +92,17 @@ class Account extends React.Component{
                 avatar: ''
             });
 
-            }
+            
         
         })
+
+
+
     }
+
+
+
+   
     onTodoChange(e){
         const {name, value} = e.target;
         
