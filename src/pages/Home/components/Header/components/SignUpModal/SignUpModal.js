@@ -7,6 +7,7 @@ import Button from '../Button'
 import FormItem from '../FormItem'
 import Input from '../Input'
 import rabbit from "../../elements/logo.svg";
+import axios from "axios"
 
 const LogoContainer = styled.div`
   width: 85.84px;
@@ -123,12 +124,23 @@ class SignUpModal extends React.Component {
 
   handleFormSubmit(event) {
     const {formData} = this.state;
+    const {onLogIn} = this.props;
     event.preventDefault();
 
     if (!this.isFormValid()){
       console.log('There are validation errors')
       return;
     }
+    //调用后端接口，实现注册功能
+    axios.post('/user/signUp',{
+      'email' : formData.email.value,
+      'password' : formData.password.value
+    }).then((res) =>{
+      if(res.status == 200){
+        //注册成功后，打开登录页面...需要补充代码
+        
+      }
+    });
     console.log('Sign Up...', formData)
   }
 
@@ -146,8 +158,6 @@ class SignUpModal extends React.Component {
 
     return !errorMessages.length;
   }
-
-
 
   render() {
     const {formData} = this.state;
@@ -189,8 +199,7 @@ class SignUpModal extends React.Component {
               <Button 
                 disabled={!this.isFormValid()}
                 width="100%" 
-                variant="success"
-              >
+                variant="success">
                 Sign Up
               </Button>
             </FormItem>
