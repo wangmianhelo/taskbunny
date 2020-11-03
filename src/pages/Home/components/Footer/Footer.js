@@ -8,7 +8,7 @@ import styled from "styled-components";
 const FooterContainer = styled.div`
   margin-top: 20px;
   font-size: 16px;
-  background: #778899;
+  background: #000000;
   color: $white;
 `
 
