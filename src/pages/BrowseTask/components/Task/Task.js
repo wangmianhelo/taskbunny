@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";

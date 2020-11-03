@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Header from "../Home/components/Header";
 import Task from "./components/Task";
 import TaskDetail from "./components/TaskDetail";
 import api from "../../api";
-import avatarTrader from "./components/Task/pic/avatar-trader.png";
-import detailImg1 from "./components/TaskDetail/pic/detailImg1.png";
-import detailImg2 from "./components/TaskDetail/pic/detailImg2.png";
-import detailImg3 from "./components/TaskDetail/pic/detailImg3.png";
+
 
 const BrowseTaskContainer = styled.div`
   margin: 3rem auto 2rem;
@@ -49,38 +45,40 @@ class BrowseTask extends React.Component {
       error: null,
       tasks: [],
       currentTask: null,
+      currentTaskIndex: null,
     }
   }
 
+  async getTask () {
+    try {
+      const response = await api.get('/task/tasks');
+      console.log(response);
+      this.setState({
+        ...this.state,
+        tasks: response.data.data,
+        currentTask: response.data.data[this.state.currentTaskIndex || 0],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   componentDidMount() {
-    const getTask = async () => {
-      try {
-        const response = await api.get('/task/tasks');
-        console.log(response);
-        this.setState({
-          ...this.state,
-          tasks: response.data.data,
-          currentTask: response.data.data[0],
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getTask()
+    this.getTask()
   }
 
   render() {
     const { error, tasks, currentTask, } = this.state;
     const handleRefresh = () => {
-
+      this.getTask();
     };
     return (
       <div>
         <BrowseTaskContainer>
           <TaskContainer>
-              {tasks.map(task => (
+              {tasks.map((task, index) => (
                 <Task {...task}
-                onClick={() => this.setState({...this.state, currentTask: task})} />
+                onClick={() => this.setState({...this.state, currentTaskIndex: index, currentTask: task})} />
               ))}
           </TaskContainer>
           <TaskDetailContainer>

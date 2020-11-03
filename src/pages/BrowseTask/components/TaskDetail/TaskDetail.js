@@ -1,7 +1,5 @@
-
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
@@ -10,7 +8,7 @@ import MakeOfferModal from "../MakeOfferModal";
 
 
 const TaskSummary = styled.div`
-
+  margin: 0
 `;
 
 const TaskStatus = styled.div`
@@ -369,7 +367,7 @@ const TaskDetail = (props) => {
             <Offer>
               {//<OffererAvatar src={offer.avatar} />
               }
-              <OffererAvatar src={taskerImg} />
+              <OffererAvatar src={offer.avatar} />
               <OffererName>{offer.name}</OffererName>
               <OfferPrice>Offer Price: {offer.budget}</OfferPrice>
             </Offer>
@@ -381,9 +379,7 @@ const TaskDetail = (props) => {
         <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
         {(props.questions || []).map( question => (
           <Question>
-            {//<QuestionerAvatar src={question.avatar} />
-            }
-            <QuestionerAvatar src={taskerImg} />
+            <QuestionerAvatar src={question.avatar} />
             <QuestionerName>{question.name}</QuestionerName>
             <QuestionContent>{question.content}</QuestionContent>
           </Question>
