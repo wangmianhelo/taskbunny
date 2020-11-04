@@ -115,11 +115,13 @@ class LogInModal extends React.Component {
       if(res.status == 200){
         //将后端返回的token放置在localStorage中
         localStorage.setItem('AUTH_TOKEN',res.data.data.token);
-        //登录成功后，应跳转到mydashboard页面，需要补充代码
-        
+        //登录成功后，应跳转到mydashboard页面
+        const HISTORY = this.props.history;
+        alert("Log in successful!");
+        HISTORY.push("/MyDashboard");       
       }
     });
-    console.log('Log In...', formData)
+    console.log('Log In Successful', formData)
   }
 
   isFormValid(){

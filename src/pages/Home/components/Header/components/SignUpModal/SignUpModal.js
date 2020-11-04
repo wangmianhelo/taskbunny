@@ -137,11 +137,14 @@ class SignUpModal extends React.Component {
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
-        //注册成功后，打开登录页面...需要补充代码
+        //注册成功后，打开登录页面
         
+        const History = this.props.history;
+        alert("Sign up successful! Please log in!");
+        History.push('/');
       }
     });
-    console.log('Sign Up...', formData)
+    console.log('User Created', formData)
   }
 
   isFormValid(){
