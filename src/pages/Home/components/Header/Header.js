@@ -8,6 +8,8 @@ import { BrowserRouter, Link } from "react-router-dom";
 import SignUpModal from './components/SignUpModal';
 import LogInModal from './components/LogInModal';
 import withAuth from '../../../../components/Auth/withAuth';
+import {withRouter} from 'react-router-dom';
+
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -154,6 +156,42 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
+const AvatarWrapper = styled.div `
+positio:relative;
+`
+
+
+const Menu = styled.div `
+  margin-left: -90px;
+  margin-top:23px;
+  position: absolute;
+  width: 230px;
+  height: 400px;
+  border: 1px solid rgb(246, 248, 253);
+  background-color:white;
+  z-index:20;
+  display:flex;
+  flex-flow: column;
+  `
+
+
+const BoxItem = styled.div `
+  width: 230px;
+  height: 55px;
+  border: 1px solid rgb(246, 248, 255);
+  text-align: center;
+  font-size: 20px;
+  line-height:55px;
+  background-color: white;
+  color: rgb(84, 90, 119);
+  cursor: pointer;
+  &:hover{
+   background-color: #D3D3D3;
+  }
+  `
+
+
 const MODAL = {
   LOG_IN: 'LOG_IN',
   SIGN_UP: 'SIGN_UP',
@@ -166,13 +204,51 @@ class Header extends React.Component {
     super(props);
     
     this.state = {
+      is_focus:false,
       loggedIn: false,
       showMenu: false,
-
+      is_login:false,
       showModal: MODAL.EMPTY,
     };
-
+    this.showMenu = this.showMenu.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+
+  logout(){
+    this.props.value.setUser()
+    localStorage.clear()
+    this.props.history.push('/')
+  }
+
+  showMenu(show){
+    console.log(show)
+    if(show===true){
+      return (
+      <Menu>
+        <BoxItem>{this.props.value.user_email}</BoxItem>
+        <StyledLink to='/MyDashboard'><BoxItem>My DashBoard</BoxItem></StyledLink>
+        <StyledLink to='/post-a-task'><BoxItem>Post a task</BoxItem></StyledLink>
+        <StyledLink to='/map'><BoxItem>Map</BoxItem></StyledLink>
+        <StyledLink to='/browse-tasks'><BoxItem>My tasks</BoxItem></StyledLink>
+        <StyledLink to='/notification'><BoxItem>notification</BoxItem></StyledLink>
+        <StyledLink to='/account'><BoxItem>Account</BoxItem></StyledLink>
+        <BoxItem onClick={
+         this.logout
+        }>Log out</BoxItem>
+      </Menu>
+    )
+    }else{
+      return null;
+    }
+  }
+
+  toggleMenu(){
+    this.setState(preState=>({
+      is_focus: !preState.is_focus
+    }))
   }
 
   showModal(target) {
@@ -197,12 +273,21 @@ class Header extends React.Component {
     });
   }
   
+  componentDidUpdate(prevProps){
+    if(prevProps.value.user_email !== this.props.value.user_email){
+      this.setState(preState =>({
+        is_login: !preState.is_login
+      }))
+
+    }
+  }
   render() {
     const { showModal } = this.state;
     let { loggedIn, showMenu } = this.state;
     
     console.log("<<<<<<<<<render===========",this.props.value);
     return (
+      <>
       <HeaderWrapper>
         {showMenu && (
           <HiddenMenu>
@@ -279,14 +364,19 @@ class Header extends React.Component {
         )}
 
         <HeaderRight>
-          {loggedIn ? (
-            <AvatarContainer
-              onClick={() => {
-                this.setLoggedIn(false);
-              }}
-            >
-              <img src={taskman} alt="avatar" />
-            </AvatarContainer>
+          {this.state.is_login ? (
+            <>
+            <AvatarWrapper onClick={this.toggleMenu}>
+
+              <AvatarContainer
+              
+            > 
+
+              <img src={this.props.value.user_avatar} alt="avatar" />
+              </AvatarContainer>
+              {this.showMenu(this.state.is_focus)}
+            </AvatarWrapper>
+            </>
           ) : (
             <React.Fragment>
               <ButtonRight onClick={this.showModal(MODAL.SIGN_UP)}>Sign up</ButtonRight>
@@ -314,24 +404,13 @@ class Header extends React.Component {
               )}
             </React.Fragment>
           )}
-          {/* {loggedIn && <div>avatar</div>}
-            {!loggedIn && (
-              <React.Fragment>
-                <ButtonRight>Sign up</ButtonRight>
-                <ButtonRight
-                  onClick={() => {
-                    this.setLoggedIn(true);
-                  }}
-                >
-                  Log in
-                </ButtonRight>
-                <ButtonWhite>Become a tasker</ButtonWhite>
-              </React.Fragment>
-            )} */}
         </HeaderRight>
+       
       </HeaderWrapper>
+      
+     </>             
     );
   }
 }
 
-export default withAuth(Header);
+export default withRouter(withAuth(Header));
