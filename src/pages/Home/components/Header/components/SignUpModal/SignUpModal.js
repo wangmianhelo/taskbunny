@@ -8,6 +8,8 @@ import FormItem from '../FormItem'
 import Input from '../Input'
 import rabbit from "../../elements/logo.svg";
 import api from '../../../../../../api'
+import {withRouter} from 'react-router-dom'
+
 
 const LogoContainer = styled.div`
   width: 85.84px;
@@ -125,6 +127,7 @@ class SignUpModal extends React.Component {
   handleFormSubmit(event) {
     const {formData} = this.state;
     const {onLogIn} = this.props;
+    const {onClose} = this.props;
     event.preventDefault();
 
     if (!this.isFormValid()){
@@ -138,10 +141,10 @@ class SignUpModal extends React.Component {
     }).then((res) =>{
       if(res.status == 200){
         //注册成功后，打开登录页面
-        
-        const History = this.props.history;
+       
+        const history = this.props.history;
         alert("Sign up successful! Please log in!");
-        History.push('/');
+        history.push('/');
       }
     });
     console.log('User Created', formData)
@@ -238,4 +241,4 @@ SignUpModal.propTypes = {
   onLogIn: PropTypes.func.isRequired,
 };
 
-export default SignUpModal;
+export default withRouter(SignUpModal);

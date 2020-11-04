@@ -75,8 +75,8 @@ class Account extends React.Component{
 
 
     componentWillReceiveProps(newprops){
-        const email = newprops.value.user.email
-     
+        const email = newprops.value.user_email
+        console.log(newprops.value)
         api.get(`/user/info/${email}`).then((res) =>{
             console.log(this.state.firstName)
            

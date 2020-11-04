@@ -9,6 +9,8 @@ import Input from '../Input'
 import rabbit from "../../elements/logo.svg";
 import axios from "axios"
 import api from '../../../../../../api'
+import {withRouter} from 'react-router-dom'
+import withAuth from'../../../../../../components/Auth/withAuth'
 
 const LogoContainer = styled.div`
   width: 85.84px;
@@ -100,6 +102,8 @@ class LogInModal extends React.Component {
 
   handleFormSubmit(event) {
     const {formData} = this.state;
+    const {setUser} = this.props.value.setUser
+
     event.preventDefault();
 
     if (!this.isFormValid()){
@@ -107,21 +111,22 @@ class LogInModal extends React.Component {
       return;
     }
 
-    //调用后端接口，实现登录
+    
     api.post('/login',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
-        //将后端返回的token放置在localStorage中
+        console.log('123')
+      
         localStorage.setItem('AUTH_TOKEN',res.data.data.token);
-        //登录成功后，应跳转到mydashboard页面
-        const HISTORY = this.props.history;
-        alert("Log in successful!");
-        HISTORY.push("/MyDashboard");       
+        console.log(res.data.data.avatar)
+        this.props.value.setUser(res.data.data.email,res.data.data.avatar)
+        const history = this.props.history;
+        history.push("/MyDashboard");       
       }
     });
-    console.log('Log In Successful', formData)
+  
   }
 
   isFormValid(){
@@ -221,4 +226,4 @@ LogInModal.propTypes = {
   onSignUp: PropTypes.func.isRequired,
 };
 
-export default LogInModal;
+export default withAuth(withRouter(LogInModal));

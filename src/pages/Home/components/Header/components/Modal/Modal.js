@@ -62,7 +62,7 @@ const Modal = ({
     onClose,
     children,
 }) => (
-  <Overlay onClick={onClose}>
+  <Overlay >
     <StyledModal onClick={(event) => event.stopPropagation()}>
         {children}
         <Close onClick={onClose}>X</Close>
