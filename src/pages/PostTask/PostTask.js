@@ -4,15 +4,13 @@ import DatePickerTool from "./components/DatePickerTool";
 import CurrencyInput from "react-currency-input-field";
 import api from '../../api';
 import withAuth from '../../components/Auth/withAuth';
-
+import {withRouter} from 'react-router-dom'
 const Layout = styled.div`
   display: flex;
   justify-content: space-between;
   margin-left: 60px;
   margin-right: 60px;
-  & > div {
-    border: 2px solid red;
-  }
+ 
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -155,17 +153,17 @@ class PostTask extends React.Component {
 
   handleSendTask(){
 
-    //调用后端接口，实现发送任务
+    
     api.post('/task/task',{
-      "email" : this.props.value.user.email,
+      "email" : this.props.value.user_email,
       "title" : this.state.taskName,
-      "budget" : parseInt(this.state.taskMoney),
+      "budget" : this.state.taskMoney,
       "location" : this.state.taskAddress,
       "date" : this.state.taskDate,
       "details" : this.state.taskDetail
     }).then(res=>{
       if(res.status == 200){
-        //跳转到任务浏览页面 —— /browse-tasks 的页面，需要补充...
+        this.props.history.push('/browse-tasks')
 
       }
       
@@ -248,22 +246,6 @@ class PostTask extends React.Component {
           <TitleThree>Suggest how much</TitleThree>
           <strong>What is your budget?</strong>
           <br />
-          <input
-            type="radio"
-            onClick={() => {
-              this.setTaskBudgetType("total budget");
-            }}
-            checked={taskBudgetType === "total budget"}
-          />
-          <label>Total</label>
-          <input
-            type="radio"
-            onClick={() => {
-              this.setTaskBudgetType("hourly rate");
-            }}
-            checked={taskBudgetType === "hourly rate"}
-          />
-          <label>Hourly rate</label>
           <CurrencyInput
             id="input-example"
             name="input-name"
@@ -295,4 +277,4 @@ class PostTask extends React.Component {
   }
 }
 
-export default withAuth(PostTask);
+export default withRouter(withAuth(PostTask));
