@@ -102,6 +102,28 @@ const RecRight = styled.div`
   padding: 10px;
 `;
 
+const InputWrapper = styled.div `
+position: relative;
+
+`
+
+
+const InputFlexBox = styled.div `
+position: absolute;
+margin-top:25px;
+width:192px;
+background-color:white;
+z-index: 20;
+`
+
+const FLexItem = styled.div`
+border: 1px solid rgb(246, 248, 253);
+
+&:hover{
+  background-color: #D3D3D3;
+}
+`
+
 class PostTask extends React.Component {
   constructor(props) {
     super(props);
@@ -112,7 +134,11 @@ class PostTask extends React.Component {
       taskBudgetType: "",
       taskDate: "",
       taskMoney: "",
+      availableAddress: [],
+      showDropDown: false
     };
+   this.handleItemClick = this.handleItemClick.bind(this)
+   this.handleDropDown = this.handleDropDown.bind(this)
   }
 
   setTaskName(taskName) {
@@ -131,8 +157,14 @@ class PostTask extends React.Component {
     this.setState({
       taskAddress,
     });
-  }
-
+    api.get(`/task/address/${taskAddress}`)
+    .then(res =>{
+      this.setState({
+        availableAddress: res.data.result
+      },)
+    })
+    }
+  
   setTaskBudgetType(taskBudgetType) {
     this.setState({
       taskBudgetType,
@@ -150,6 +182,36 @@ class PostTask extends React.Component {
       taskMoney,
     });
   }
+
+  handleItemClick(e){
+    this.setState({
+      taskAddress:e.target.textContent
+    },()=>{
+      this.setState({
+        showDropDown:false
+      })
+    })
+  }
+
+  handleDropDown(show){
+    if(show){
+      return(
+        <InputFlexBox>
+        { 
+         this.state.availableAddress.map((record) => (
+           record.length > 0
+             ? (<FLexItem onClick={this.handleItemClick}>{record}</FLexItem>)
+             : null
+         ))
+       }
+       
+       </InputFlexBox>
+      )
+    }else {
+      return null
+    }
+  }
+
 
   handleSendTask(){
 
@@ -221,13 +283,22 @@ class PostTask extends React.Component {
             <strong>Address</strong>
           </label>
           <br />
+         
+          <InputWrapper>
+              {this.handleDropDown(this.state.showDropDown)}
           <input
             type="text"
             value={taskAddress}
             onChange={(e) => {
+              this.setState({
+                showDropDown: true
+              })
               this.setTaskAddress(e.target.value);
             }}
+            
+            
           />
+          </InputWrapper>
           <br />
           <label style={{ marginBottom: 300 }}>
             <strong>When do you need it done?</strong>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
+import moment from 'moment';
 
 const DatePickerLayout = styled.div`
   position: absolute;
@@ -14,8 +15,7 @@ function DatePickerTool({ onChange, value }) {
   return (
     <DatePickerLayout>
       <DatePicker
-        /* selected={startDate}
-        onChange={(date) => setStartDate(date)} */
+        minDate={moment().toDate()}
         onChange={(e) => {
           onChange(e);
         }}
