@@ -53,7 +53,7 @@ const FORM = {
 class LogInModal extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       formData:{
         email: {
@@ -111,22 +111,22 @@ class LogInModal extends React.Component {
       return;
     }
 
-    
+
     api.post('/login',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{
       if(res.status == 200){
         console.log('123')
-      
+
         localStorage.setItem('AUTH_TOKEN',res.data.data.token);
         console.log(res.data.data.avatar)
         this.props.value.setUser(res.data.data.email,res.data.data.avatar)
         const history = this.props.history;
-        history.push("/MyDashboard");       
+        history.push(this.props.redirect || "/MyDashboard");
       }
     });
-  
+
   }
 
   isFormValid(){
@@ -152,11 +152,11 @@ class LogInModal extends React.Component {
 
     return (
       <Modal onClose={onClose}>
-        
+
           <LogoContainer>
             <img src={rabbit} alt="taskbunny" />
           </LogoContainer>
-        
+
         <Modal.Body>
           <Form onSubmit={this.handleFormSubmit}>
           {Object.keys(FORM).map((key) => {
@@ -167,15 +167,15 @@ class LogInModal extends React.Component {
             const errorMessage = touched ? this.getErrorMessage(key) : '';
 
             return (
-              <FormItem 
-                key={key} 
-                label={label} 
-                htmlFor={key} 
+              <FormItem
+                key={key}
+                label={label}
+                htmlFor={key}
                 errorMessage={errorMessage}
               >
-                <Input 
-                  onChange={this.handleFormDataChange(key)} 
-                  id={key} 
+                <Input
+                  onChange={this.handleFormDataChange(key)}
+                  id={key}
                   type={type}
                   errorMessage={errorMessage}
                   value={value}
@@ -185,9 +185,9 @@ class LogInModal extends React.Component {
             );
           })}
             <FormItem>
-              <Button 
+              <Button
                 disabled={!this.isFormValid()}
-                width="100%" 
+                width="100%"
                 variant="success"
               >
                 Log In
@@ -197,14 +197,14 @@ class LogInModal extends React.Component {
           <Form>
           <Modal.Header>---------- or log in with ----------</Modal.Header>
           <FormItem>
-            <Button width="100%" 
+            <Button width="100%"
                 variant="primary">
               Facebook
             </Button >
           </FormItem>
           <FormItem>
             <br></br>
-            <Button width="100%" 
+            <Button width="100%"
                 variant="secondary">
               Google
             </Button >
