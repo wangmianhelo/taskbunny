@@ -3,10 +3,14 @@ import styled from "styled-components";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
 import MakeOfferModal from "../MakeOfferModal";
+import AskQuestionModal from "../AskQuestionModal";
+import SignUpModal from "../../../Home/components/Header/components/SignUpModal";
+import LogInModal from "../../../Home/components/Header/components/LogInModal";
+import withAuth from "../../../../components/Auth/withAuth";
 
 
 const TaskSummary = styled.div`
-  margin: 0
+  margin: 0;
 `;
 
 const TaskStatus = styled.div`
@@ -266,6 +270,10 @@ const TaskQuestion = styled.div`
   }
 `;
 
+const Warning = styled.div`
+  margin-top: 1rem;
+`;
+
 const Question = styled.div`
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -314,9 +322,16 @@ const SignIn = styled.div`
   }
 `;
 
+const MODAL = {
+  MAKE_OFFER: 'MAKE_OFFER',
+  ASK_QUESTION: 'ASK_QUESTION',
+  SIGN_UP: 'SIGN_UP',
+  EMPTY: '',
+}
+
 const TaskDetail = (props) => {
 
-  const [ showModal, setShowModal ] = useState(false);
+  const [ showModal, setShowModal ] = useState('');
   return (
     <div>
       <TaskSummary>
@@ -329,7 +344,7 @@ const TaskDetail = (props) => {
             Task Budget
             <span>${props.budget}</span>
 
-            <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+            <Button onClick={ () => setShowModal(MODAL.MAKE_OFFER) }>Make an offer</Button>
           </TaskBudget>
           <TaskOptions>
             More Options <i></i>
@@ -356,7 +371,7 @@ const TaskDetail = (props) => {
       </TaskContent>
       <TaskOffer>
         <h3>Offers ({(props.offers || []).length})</h3>
-        <Button onClick={ () => setShowModal(true) }>Make an offer</Button>
+        <Button onClick={ () => setShowModal(MODAL.MAKE_OFFER) }>Make an offer</Button>
         <OfferWrapper>
           {(props.offers || []).map( offer => (
             <Offer>
@@ -369,7 +384,8 @@ const TaskDetail = (props) => {
       </TaskOffer>
       <TaskQuestion>
         <h3>Questions ({(props.questions || []).length})</h3>
-        <div>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</div>
+        { props.value.user_email && <Button onClick={ () => setShowModal(MODAL.ASK_QUESTION) }>Ask a  question</Button> }
+        <Warning>Please don't share personal info – insurance won't apply to tasks not done through Airtasker!</Warning>
         {(props.questions || []).map( question => (
           <Question>
             <QuestionerAvatar src={question.avatar} />
@@ -377,19 +393,54 @@ const TaskDetail = (props) => {
             <QuestionContent>{question.content}</QuestionContent>
           </Question>
         ))}
-        <Button>Ask a question</Button>
       </TaskQuestion>
 
-      <SignIn>
-        <h3>To join the conversation</h3>
-        <Button>Join TaskBunny</Button><span>or</span><Button>Log in</Button>
-      </SignIn>
+      {
+        !props.value.user_email && (
+          <SignIn>
+            <h3>To join the conversation</h3>
+            <Button onClick={ () => setShowModal(MODAL.SIGN_UP) }>Join TaskBunny</Button>
+            <span>or</span>
+            <Button onClick={ () => setShowModal(MODAL.MAKE_OFFER) }>Log in</Button>
+          </SignIn>
+        )
+      }
 
       {
-        showModal && <MakeOfferModal handleRefresh={props.handleRefresh} task={props} onClose={() => setShowModal(false)}></MakeOfferModal>
+        showModal === MODAL.MAKE_OFFER && (
+          props.value.user_email
+          &&
+          <MakeOfferModal
+            handleRefresh={props.handleRefresh}
+            task={props}
+            onClose={() => setShowModal(MODAL.EMPTY)}>
+          </MakeOfferModal>
+          ||
+          <LogInModal
+            onClose={() => setShowModal(MODAL.EMPTY)}
+            onSignUp={() => setShowModal(MODAL.SIGN_UP)}>
+          </LogInModal>
+        )
+      }
+      {
+        showModal === MODAL.SIGN_UP
+        &&
+        <SignUpModal
+          onClose={() => setShowModal(MODAL.EMPTY)}
+          onLogIn={() => setShowModal(MODAL.MAKE_OFFER)}>
+        </SignUpModal>
+      }
+      {
+        showModal === MODAL.ASK_QUESTION
+        &&
+        <AskQuestionModal
+          handleRefresh={props.handleRefresh}
+          task={props}
+          onClose={() => setShowModal(MODAL.EMPTY)}>
+        </AskQuestionModal>
       }
     </div>
   );
 };
 
-export default TaskDetail;
+export default withAuth(TaskDetail);

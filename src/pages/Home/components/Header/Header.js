@@ -202,7 +202,7 @@ const MODAL = {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       is_focus:false,
       loggedIn: false,
@@ -272,7 +272,7 @@ class Header extends React.Component {
       showMenu,
     });
   }
-  
+
   componentDidUpdate(prevProps){
     if(prevProps.value.user_email !== this.props.value.user_email){
       this.setState(preState =>({
@@ -284,7 +284,7 @@ class Header extends React.Component {
   render() {
     const { showModal } = this.state;
     let { loggedIn, showMenu } = this.state;
-    
+
     console.log("<<<<<<<<<render===========",this.props.value);
     return (
       <>
@@ -330,7 +330,9 @@ class Header extends React.Component {
                 </StyledLink>
               </div>
               <div>Categories</div>
-              <div>Browse tasks</div>
+              <div>
+                <StyledLink to="/browse-tasks">Browse tasks</StyledLink>
+              </div>
               <div>How it works</div>
             </MenuWrapper>
           </HiddenMenu>
@@ -348,7 +350,9 @@ class Header extends React.Component {
             </StyledLink>
           </ButtonYellow>
           <ButtonLeft>Categories</ButtonLeft>
-          <ButtonLeft>Browse tasks</ButtonLeft>
+          <ButtonLeft>
+            <StyledLink to="/browse-tasks">Browse tasks</StyledLink>
+          </ButtonLeft>
           <ButtonLeft>How it works</ButtonLeft>
         </HeaderLeft>
         {!loggedIn && (
@@ -369,8 +373,8 @@ class Header extends React.Component {
             <AvatarWrapper onClick={this.toggleMenu}>
 
               <AvatarContainer
-              
-            > 
+
+            >
 
               <img src={this.props.value.user_avatar} alt="avatar" />
               </AvatarContainer>
@@ -405,10 +409,10 @@ class Header extends React.Component {
             </React.Fragment>
           )}
         </HeaderRight>
-       
+
       </HeaderWrapper>
-      
-     </>             
+
+     </>
     );
   }
 }
