@@ -15,7 +15,8 @@ padding-top: 20px;
 padding-bottom: 20px;
 padding-left: 100px;
 
-a { text-decoration: none; color:white } 
+a { text-decoration: none; color: #5EDEFC;
+} 
 `
 
 const FollowUs = (props) => {
