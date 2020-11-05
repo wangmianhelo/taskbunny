@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
-
 import MakeOfferModal from "../MakeOfferModal";
 
 
@@ -254,7 +252,6 @@ const OffererName = styled.div`
 `;
 
 const OfferPrice = styled.div`
-  background-color: #f6f8fd;
   border-radius: 10px;
   font-weight: 700;
   padding: 10px;
@@ -317,8 +314,6 @@ const SignIn = styled.div`
   }
 `;
 
-
-
 const TaskDetail = (props) => {
 
   const [ showModal, setShowModal ] = useState(false);
@@ -365,8 +360,6 @@ const TaskDetail = (props) => {
         <OfferWrapper>
           {(props.offers || []).map( offer => (
             <Offer>
-              {//<OffererAvatar src={offer.avatar} />
-              }
               <OffererAvatar src={offer.avatar} />
               <OffererName>{offer.name}</OffererName>
               <OfferPrice>Offer Price: {offer.budget}</OfferPrice>
@@ -384,6 +377,7 @@ const TaskDetail = (props) => {
             <QuestionContent>{question.content}</QuestionContent>
           </Question>
         ))}
+        <Button>Ask a question</Button>
       </TaskQuestion>
 
       <SignIn>
