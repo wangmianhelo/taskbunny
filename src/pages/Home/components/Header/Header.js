@@ -349,7 +349,9 @@ class Header extends React.Component {
               Post a task
             </StyledLink>
           </ButtonYellow>
-          <ButtonLeft>Categories</ButtonLeft>
+          <ButtonLeft>
+            <StyledLink to="/map">Map</StyledLink>
+          </ButtonLeft>
           <ButtonLeft>
             <StyledLink to="/browse-tasks">Browse tasks</StyledLink>
           </ButtonLeft>

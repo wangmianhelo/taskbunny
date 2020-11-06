@@ -24,6 +24,9 @@ const SectionTitle = styled.h3`
   text-align: center;
   margin: 0px;
   padding: 80px 100px 0;
+  @media (max-width: 768px) {
+    padding: 2rem 4rem 0;
+  }
 `;
 
 const Wrapper = styled.section`
