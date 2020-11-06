@@ -15,27 +15,47 @@ const TaskerBlockWrapper = styled.div `
     margin:30px  auto;
     width: 900px;
     height: 400px;
-
     border-radius: 15px;
-`
+    @media(max-width: 768px) {
+        display: block;
+        width: 90%;
+        background-color: #5EDEFC;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+    }
+`;
 
 const TaskerSpec = styled.div `
     grid-row:1/3;
     grid-column:1/3;
     background-color: #5EDEFC;
-    `
+    @media(max-width: 768px) {
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+    }
+`;
 
-    const TaskerReview = styled.div `
+const TaskerReview = styled.div `
     grid-row:3/5;
     grid-column:1/2;
-    background-color: #5EDEFC
-`
+    background-color: #5EDEFC;
+    @media(max-width: 768px) {
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+    }
+`;
 
 const TaskerBagdes = styled.div `
     grid-row:3/5;
     grid-column:2/3;
     background-color: #5EDEFC;
-`
+    @media(max-width: 768px) {
+        display: none;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+
+    }
+`;
 
 const TaskerName = styled.h1 `
     width: 77px;
@@ -46,21 +66,29 @@ const TaskerName = styled.h1 `
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
-
-color: #000000;
-`
+    color: #000000;
+`;
 
 const TaskerSpecicalize = styled.p `
     margin-left: 20px;
-
     font-style: italic;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 18px;
-
     color: #545a77;
-`
+`;
+
+const TaskerDesc = styled.p`
+    margin-left: 20px;
+    font-style: italic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #545a77;
+`;
+
 const TaskerCredit = styled.h5 `
     font-size: 11px;
 
@@ -72,7 +100,6 @@ const TaskerCredit = styled.h5 `
     margin: 0 15px 12px;
     position: relative;
     z-index: 2;
-    }
     color: #000000;
 `
 const TaskerRate = styled.div `
@@ -125,9 +152,12 @@ const Img = styled.a `
     width: auto;
     grid-row:1/5;
     grid-column:3/4;
-
     background: url(${cardImg}) no-repeat;
     background-size: cover;
+    @media(max-width: 768px) {
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+    }
 `;
 
 const Indent = styled.img `
@@ -152,13 +182,16 @@ const HouseIcon = styled.img `
 
 
 class TaskerBlock extends Component {
-    
+
     render(){
         return (
             <TaskerBlockWrapper>
                <TaskerSpec>
                    <TaskerName >Bred</TaskerName>
-                   <TaskerSpecicalize>Specialities: handyman, electrician, delivery. <br/><br/> this is desc </TaskerSpecicalize>
+                   <TaskerSpecicalize>Specialities: handyman, electrician, delivery.
+                   </TaskerSpecicalize>
+                    <TaskerDesc>A sparky by trade, Brendon jumped onboard when he went back to studying. Here is how Airtasker fit in with his busy lifestyle...
+                    </TaskerDesc>
                 </TaskerSpec>
                 <TaskerReview>
                     <TaskerCredit>TRUST</TaskerCredit>
@@ -176,7 +209,7 @@ class TaskerBlock extends Component {
                <TaskerBagdes>
                     <TaskerCredit>BADGES</TaskerCredit>
                     <TaskerRateDesc><Indent/> Digital iD</TaskerRateDesc>
-                    <TaskerRateDesc><HouseIcon/> IKEA</TaskerRateDesc>      
+                    <TaskerRateDesc><HouseIcon/> IKEA</TaskerRateDesc>
                </TaskerBagdes>
                <Img/>
             </TaskerBlockWrapper>
@@ -184,7 +217,7 @@ class TaskerBlock extends Component {
     }
 
     componentDidMount() {
-       
+
     }
 
 }
