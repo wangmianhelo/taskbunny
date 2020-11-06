@@ -19,7 +19,7 @@ import firstImg from './components/TaskCard/images/first_img.png';
 import secondImg from './components/TaskCard/images/second_img.png';
 import tGroup from './components/TaskCard/images/t_group.png';
 import calendar from './components/TaskCard/images/calendar.png';
-
+import withAuth from '../../components/Auth/withAuth'
 const DashboardBlockWrapper = styled.div `
     display : flex;
     margin-left : 73px;
@@ -182,7 +182,7 @@ class MyDashboard extends Component {
         return (
             <DashboardBlockWrapper>
                <LeftPartBox>
-                   <Avator src={avatorImg}></Avator>
+                   <Avator src={this.props.value.user_avatar}></Avator>
                </LeftPartBox>
                <RightPartBox>
                     <AdvertisementWrapper>
@@ -225,4 +225,4 @@ class MyDashboard extends Component {
     }
 }
 
-export default MyDashboard;
+export default withAuth(MyDashboard);

@@ -4,15 +4,13 @@ import DatePickerTool from "./components/DatePickerTool";
 import CurrencyInput from "react-currency-input-field";
 import api from '../../api';
 import withAuth from '../../components/Auth/withAuth';
-
+import {withRouter} from 'react-router-dom'
 const Layout = styled.div`
   display: flex;
   justify-content: space-between;
   margin-left: 60px;
   margin-right: 60px;
-  & > div {
-    border: 2px solid red;
-  }
+ 
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -104,6 +102,28 @@ const RecRight = styled.div`
   padding: 10px;
 `;
 
+const InputWrapper = styled.div `
+position: relative;
+
+`
+
+
+const InputFlexBox = styled.div `
+position: absolute;
+margin-top:25px;
+width:192px;
+background-color:white;
+z-index: 20;
+`
+
+const FLexItem = styled.div`
+border: 1px solid rgb(246, 248, 253);
+
+&:hover{
+  background-color: #D3D3D3;
+}
+`
+
 class PostTask extends React.Component {
   constructor(props) {
     super(props);
@@ -114,7 +134,11 @@ class PostTask extends React.Component {
       taskBudgetType: "",
       taskDate: "",
       taskMoney: "",
+      availableAddress: [],
+      showDropDown: false
     };
+   this.handleItemClick = this.handleItemClick.bind(this)
+   this.handleDropDown = this.handleDropDown.bind(this)
   }
 
   setTaskName(taskName) {
@@ -133,8 +157,14 @@ class PostTask extends React.Component {
     this.setState({
       taskAddress,
     });
-  }
-
+    api.get(`/task/address/${taskAddress}`)
+    .then(res =>{
+      this.setState({
+        availableAddress: res.data.result
+      },)
+    })
+    }
+  
   setTaskBudgetType(taskBudgetType) {
     this.setState({
       taskBudgetType,
@@ -153,19 +183,49 @@ class PostTask extends React.Component {
     });
   }
 
+  handleItemClick(e){
+    this.setState({
+      taskAddress:e.target.textContent
+    },()=>{
+      this.setState({
+        showDropDown:false
+      })
+    })
+  }
+
+  handleDropDown(show){
+    if(show){
+      return(
+        <InputFlexBox>
+        { 
+         this.state.availableAddress.map((record) => (
+           record.length > 0
+             ? (<FLexItem onClick={this.handleItemClick}>{record}</FLexItem>)
+             : null
+         ))
+       }
+       
+       </InputFlexBox>
+      )
+    }else {
+      return null
+    }
+  }
+
+
   handleSendTask(){
 
-    //调用后端接口，实现发送任务
+    
     api.post('/task/task',{
-      "email" : this.props.value.user.email,
+      "email" : this.props.value.user_email,
       "title" : this.state.taskName,
-      "budget" : parseInt(this.state.taskMoney),
+      "budget" : this.state.taskMoney,
       "location" : this.state.taskAddress,
       "date" : this.state.taskDate,
       "details" : this.state.taskDetail
     }).then(res=>{
       if(res.status == 200){
-        //跳转到任务浏览页面 —— /browse-tasks 的页面，需要补充...
+        this.props.history.push('/browse-tasks')
 
       }
       
@@ -223,13 +283,22 @@ class PostTask extends React.Component {
             <strong>Address</strong>
           </label>
           <br />
+         
+          <InputWrapper>
+              {this.handleDropDown(this.state.showDropDown)}
           <input
             type="text"
             value={taskAddress}
             onChange={(e) => {
+              this.setState({
+                showDropDown: true
+              })
               this.setTaskAddress(e.target.value);
             }}
+            
+            
           />
+          </InputWrapper>
           <br />
           <label style={{ marginBottom: 300 }}>
             <strong>When do you need it done?</strong>
@@ -248,22 +317,6 @@ class PostTask extends React.Component {
           <TitleThree>Suggest how much</TitleThree>
           <strong>What is your budget?</strong>
           <br />
-          <input
-            type="radio"
-            onClick={() => {
-              this.setTaskBudgetType("total budget");
-            }}
-            checked={taskBudgetType === "total budget"}
-          />
-          <label>Total</label>
-          <input
-            type="radio"
-            onClick={() => {
-              this.setTaskBudgetType("hourly rate");
-            }}
-            checked={taskBudgetType === "hourly rate"}
-          />
-          <label>Hourly rate</label>
           <CurrencyInput
             id="input-example"
             name="input-name"
@@ -295,4 +348,4 @@ class PostTask extends React.Component {
   }
 }
 
-export default withAuth(PostTask);
+export default withRouter(withAuth(PostTask));

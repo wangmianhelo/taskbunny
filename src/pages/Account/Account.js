@@ -44,19 +44,22 @@ class Account extends React.Component{
         console.log(this.state.invalid_email)
     };
     handleFile = (f) =>{
-       console.log(this)
-        console.log(this.state.firstName) 
+     
         this.setState({
             avatar: f,
             firstName: 5
         },() =>{
             const data = new FormData()
+            const email = this.props.value.user_email
             data.append('file', this.state.avatar)
-            api.post("/upload/wm194@qq.com", data).then(res =>{
+            console.log()
+            api.post(`/upload/${email}`, data).then(res =>{
                 this.setState({
                     imgUrl: res.data.avatar
-                })
-            })});
+                },()=>{this.props.value.setUser(email,res.data.avatar)})
+                
+            })
+        });
         
     }
 
