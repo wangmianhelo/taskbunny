@@ -91,15 +91,15 @@ const ButtonWhite = styled.span`
 `;
 
 const AvatarContainer = styled.div`
-  margin-top: 20px;
   margin-right: 15px;
   cursor: pointer;
-  & > img {
-    object-fit: fill;
-    width: 65.33px;
-    height: 56.33px;
-    border-radius: 50%;
-  }
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  vertical-align: middle;
 `;
 
 const MenuButton = styled.div`
@@ -371,13 +371,7 @@ class Header extends React.Component {
           {this.state.is_login ? (
             <>
             <AvatarWrapper onClick={this.toggleMenu}>
-
-              <AvatarContainer
-
-            >
-
-              <img src={this.props.value.user_avatar} alt="avatar" />
-              </AvatarContainer>
+              <AvatarContainer src={this.props.value.user_avatar} alt="avatar" />
               {this.showMenu(this.state.is_focus)}
             </AvatarWrapper>
             </>

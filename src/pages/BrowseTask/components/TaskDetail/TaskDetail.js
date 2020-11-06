@@ -364,7 +364,6 @@ const TaskDetail = (props) => {
       <TaskContent>
         <h3>Details</h3>
         <div>{props.details}</div>
-        <div>{props.details}</div>
         {(props.images || []).map( image => (
           <img src={image} alt="" />
         ))}
