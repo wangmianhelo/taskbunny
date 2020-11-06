@@ -3,7 +3,7 @@ import img1 from "./images/layer_1.png"
 import styled from "styled-components";
 
 const BannerBox = styled.div`
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 970px) {
   .clear:after{
       content: "";
       display: block;
@@ -16,14 +16,13 @@ const BannerBox = styled.div`
   }
   .box {
       background:#fff;
-      margin-left:73px;
-      margin-right:73px;
   }
 
   .left-box{
     position: absolute;
     width:30%;
-    margin-top:20%;
+    margin-top:25%;
+    margin-left:5%;
   }
   .left-box h1{
     width:100%;
@@ -39,8 +38,6 @@ const BannerBox = styled.div`
   }
 
   .right-box{
-    float:right
-    position: relative;
     width:100%;
   }
   .right-box img{
@@ -49,7 +46,7 @@ const BannerBox = styled.div`
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 969px) {
   .box {
       background:#fff;
       flex-direction:column;
@@ -57,17 +54,17 @@ const BannerBox = styled.div`
       padding-right:30px;
   }
     .left-box{
+      position: absolute;
       width:100%;
-      margin-top:40px;
     }
     .left-box h1{
       width:100%;
       text-align:center;
       line-height:35px;
       font-weight:bold;
-      font-size:30px;
+      font-size:20px;
       color:#000;
-      margin-bottom:25px;
+      margin-bottom:10px;
     }
     .left-box p{
       text-align:center;
@@ -84,6 +81,41 @@ const BannerBox = styled.div`
     }
 
   }
+  @media screen and (max-width: 650px) {
+    .box {
+        background:#fff;
+        flex-direction:column;
+        padding-left:30px;
+        padding-right:30px;
+    }
+      .left-box{
+        position: absolute;
+        width:100%;
+      }
+      .left-box h1{
+        width:100%;
+        text-align:center;
+        line-height:35px;
+        font-weight:bold;
+        font-size:15px;
+        color:#000;
+        margin-bottom:10px;
+      }
+      .left-box p{
+        text-align:center;
+        line-height:18px;
+        color:#000;
+        font-size:9px;
+      }
+      .right-box{
+        width:100%;
+      }
+      .right-box img{
+        width:100%;
+        height:auto;
+      }
+  
+    }
 }
 `
 const Banner = () => {
