@@ -95,7 +95,7 @@ const BannerBox = styled.div`
       .left-box h1{
         width:100%;
         text-align:center;
-        line-height:35px;
+        line-height:25px;
         font-weight:bold;
         font-size:15px;
         color:#000;
@@ -116,6 +116,108 @@ const BannerBox = styled.div`
       }
   
     }
+    @media screen and (max-width: 530px) {
+      .box {
+          background:#fff;
+          flex-direction:column;
+          padding-left:30px;
+          padding-right:30px;
+      }
+        .left-box{
+          position: absolute;
+          width:100%;
+        }
+        .left-box h1{
+          width:100%;
+          text-align:center;
+          line-height:25px;
+          font-weight:bold;
+          font-size:10px;
+          color:#000;
+        }
+        .left-box p{
+          text-align:center;
+          line-height:18px;
+          color:#000;
+          font-size:8px;
+        }
+        .right-box{
+          width:100%;
+        }
+        .right-box img{
+          width:100%;
+          height:auto;
+        }
+    
+      }
+    @media screen and (max-width: 530px) {
+      .box {
+          background:#fff;
+          flex-direction:column;
+          padding-left:30px;
+          padding-right:30px;
+      }
+        .left-box{
+          position: absolute;
+          width:100%;
+        }
+        .left-box h1{
+          width:100%;
+          text-align:center;
+          line-height:20px;
+          font-weight:bold;
+          font-size:10px;
+          color:#000;
+        }
+        .left-box p{
+          text-align:center;
+          line-height:15px;
+          color:#000;
+          font-size:8px;
+        }
+        .right-box{
+          width:100%;
+        }
+        .right-box img{
+          width:100%;
+          height:auto;
+        }
+    
+      }
+      @media screen and (max-width: 390px) {
+        .box {
+            background:#fff;
+            flex-direction:column;
+            padding-left:30px;
+            padding-right:30px;
+        }
+          .left-box{
+            position: absolute;
+            width:100%;
+          }
+          .left-box h1{
+            width:100%;
+            text-align:center;
+            line-height:15px;
+            font-weight:bold;
+            font-size:8px;
+            color:#000;
+          }
+          .left-box p{
+            text-align:center;
+            line-height:10px;
+            color:#000;
+            font-size:6px;
+          }
+          .right-box{
+            width:100%;
+          }
+          .right-box img{
+            width:100%;
+            height:auto;
+          }
+      
+        }
 }
 `
 const Banner = () => {
