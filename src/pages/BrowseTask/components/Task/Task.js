@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import taskerImg from "./pic/avatar-trader.png";
 import locationImg from "./pic/location.svg";
 import dateImg from "./pic/date.svg";
 
@@ -104,7 +103,7 @@ const Task = (props) => {
     <TaskCard>
       <TaskLink onClick={props.onClick}>
         <TaskBudget>${props.budget}</TaskBudget>
-        <TaskAvatar src={taskerImg}></TaskAvatar>
+        <TaskAvatar src={props.avatar}></TaskAvatar>
         <TaskTitle>{props.title}</TaskTitle>
         <TaskLocation><img src={locationImg} alt="location" />{props.location}</TaskLocation>
         <TaskDate><img src={dateImg} alt="date" />{new Date(Date.parse(props.date)).toLocaleDateString()}</TaskDate>

@@ -50,8 +50,8 @@ class Notification extends Component {
     }
     componentDidUpdate(){
         let user = this.props.value;
-        api.post('/notification/all',{ 
-            'email' : user.user.email
+        api.post('/notification/all',{
+            'email' : user.user_email
         }).then(res=>{
             if(res.data.desc == 'succ'){
                 let quesList = res.data.data;
@@ -64,7 +64,7 @@ class Notification extends Component {
         });
     }
     render(){
-        
+
 
         const { questionList} = this.state;
         return (
