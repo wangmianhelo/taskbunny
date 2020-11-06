@@ -50,8 +50,6 @@ const BannerBox = styled.div`
   .box {
       background:#fff;
       flex-direction:column;
-      padding-left:30px;
-      padding-right:30px;
   }
     .left-box{
       position: absolute;
@@ -85,8 +83,6 @@ const BannerBox = styled.div`
     .box {
         background:#fff;
         flex-direction:column;
-        padding-left:30px;
-        padding-right:30px;
     }
       .left-box{
         position: absolute;
@@ -120,8 +116,6 @@ const BannerBox = styled.div`
       .box {
           background:#fff;
           flex-direction:column;
-          padding-left:30px;
-          padding-right:30px;
       }
         .left-box{
           position: absolute;
@@ -154,8 +148,6 @@ const BannerBox = styled.div`
       .box {
           background:#fff;
           flex-direction:column;
-          padding-left:30px;
-          padding-right:30px;
       }
         .left-box{
           position: absolute;
@@ -188,8 +180,6 @@ const BannerBox = styled.div`
         .box {
             background:#fff;
             flex-direction:column;
-            padding-left:30px;
-            padding-right:30px;
         }
           .left-box{
             position: absolute;
