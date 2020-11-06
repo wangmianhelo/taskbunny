@@ -14,6 +14,13 @@ const CardDesign = styled.div`
   justify-content: space-between;
   padding: 12px 12px 16px 12px;
   margin: 6px;
+  @media (max-width:768px) {
+    width: 45%;
+    margin: auto;
+    &:last-child {
+      display: none;
+    }
+  }
 `;
 
 const CardLeft = styled.div`

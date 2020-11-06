@@ -29,6 +29,12 @@ const Tab = styled.span`
   margin: 5px 22px;
   cursor: pointer;
   font-weight: 700;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
   &:hover {
     text-decoration: underline;
     color: #f3d250;

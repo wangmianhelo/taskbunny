@@ -4,10 +4,15 @@ import Task from "./components/Task";
 
 const CardLayout = styled.div`
   display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  max-width: 1440px;
+
 `;
+
 const TasksWrapper = styled.div`
-  margin-left: 40px;
-  margin-right: 40px;
+  margin: 0 auto;
+  width: 95%;
 `;
 
 const Tasks = () => {

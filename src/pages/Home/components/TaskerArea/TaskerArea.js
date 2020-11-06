@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import TaskerBlock from "./components/TaskerBlock"
 
- 
+
 
 const TaskerWrapper = styled.div `
     width: 100%;
@@ -13,8 +13,7 @@ const TakserTitle = styled.div `
 
     width: 100%;
     height: 50.33px;
-    margin:10px; auto;
-
+    margin:10px auto;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -56,28 +55,31 @@ const TaskerList = styled.div `
 const TaskerItem = styled.div`
     align-content: flex-start;
     width: 70px;
-    height：30px;
+    height: 30px;
     line-height: 22px;
-    text-align:center;
+    text-align: center;
 
     font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     line-height: 22px;
+    @media(max-width: 768px) {
+        padding-top: 2rem;
+    }
 
     &:after {
         display:block;
         content: '';
-        border-bottom: solid 2px #019fb6;  
-        transform: scaleX(0);  
+        border-bottom: solid 2px #019fb6;
+        transform: scaleX(0);
         transition: transform 250ms ease-in-out;
     }
     &:hover {
         &:after {
-            transform: scaleX(1); 
+            transform: scaleX(1);
         }
     }
 
     &:hover{
-        
+
         color:#019fb6;
     }
     &.left{
