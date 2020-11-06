@@ -401,7 +401,7 @@ const TaskDetail = (props) => {
             <h3>To join the conversation</h3>
             <Button onClick={ () => setShowModal(MODAL.SIGN_UP) }>Join TaskBunny</Button>
             <span>or</span>
-            <Button onClick={ () => setShowModal(MODAL.MAKE_OFFER) }>Log in</Button>
+            <Button onClick={ () => setShowModal(MODAL.ASK_QUESTION) }>Log in</Button>
           </SignIn>
         )
       }
@@ -418,7 +418,8 @@ const TaskDetail = (props) => {
           ||
           <LogInModal
             onClose={() => setShowModal(MODAL.EMPTY)}
-            onSignUp={() => setShowModal(MODAL.SIGN_UP)}>
+            onSignUp={() => setShowModal(MODAL.SIGN_UP)}
+            redirect={"/browse-tasks"}>
           </LogInModal>
         )
       }
@@ -431,13 +432,21 @@ const TaskDetail = (props) => {
         </SignUpModal>
       }
       {
-        showModal === MODAL.ASK_QUESTION
-        &&
-        <AskQuestionModal
-          handleRefresh={props.handleRefresh}
-          task={props}
-          onClose={() => setShowModal(MODAL.EMPTY)}>
-        </AskQuestionModal>
+        showModal === MODAL.ASK_QUESTION && (
+          props.value.user_email
+          &&
+          <AskQuestionModal
+            handleRefresh={props.handleRefresh}
+            task={props}
+            onClose={() => setShowModal(MODAL.EMPTY)}>
+          </AskQuestionModal>
+          ||
+          <LogInModal
+            onClose={() => setShowModal(MODAL.EMPTY)}
+            onSignUp={() => setShowModal(MODAL.SIGN_UP)}
+            redirect={"/browse-tasks"}>
+          </LogInModal>
+        )
       }
     </div>
   );
