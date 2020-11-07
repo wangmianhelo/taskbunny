@@ -1,6 +1,5 @@
 {
   "name": "taskbunny",
-  "proxy": "http://localhost:7001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
