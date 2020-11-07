@@ -112,7 +112,7 @@ class LogInModal extends React.Component {
     }
 
 
-    api.post('/login',{
+    api.post('/api/login',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{

@@ -32,7 +32,7 @@ const SearchBorad = styled.div `
   right: 50px;
   top: 200px;
   width: 330px;
-  height:550px;
+  height:330px;
 
   background-color: #ffa31a;
   border-radius: 15px;
@@ -134,7 +134,7 @@ class Map extends Component {
      this.handleSuburbClick = this.handleSuburbClick.bind(this);
   }
   componentDidMount(){
-    axios.get('/map/tasks').then((res) =>{
+    axios.get('/api/map/tasks').then((res) =>{
       this.state.taskArray = res.data
     })
   }
@@ -194,26 +194,9 @@ class Map extends Component {
                 </SearchButton>
           </SearchInputWrapper>
           
-          <SearchInputWrapper>
-              <SearchInputTitile>
-                Search tasks by tags
-                </SearchInputTitile>
-                <SearchInput/>
-                <SearchButton>
-                  Search
-                </SearchButton>
-                
-          </SearchInputWrapper>
+          
 
-               <SearchInputWrapper>
-              <SearchInputTitile>
-                 still hard to find? 
-                </SearchInputTitile>
-                <MatchhButton>
-                 Match
-                </MatchhButton>
-                
-          </SearchInputWrapper>
+      
                
           </SearchBorad>
           

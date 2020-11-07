@@ -157,7 +157,7 @@ class PostTask extends React.Component {
     this.setState({
       taskAddress,
     });
-    api.get(`/task/address/${taskAddress}`)
+    api.get(`/api/task/address/${taskAddress}`)
     .then(res =>{
       this.setState({
         availableAddress: res.data.result
@@ -216,7 +216,7 @@ class PostTask extends React.Component {
   handleSendTask(){
 
     
-    api.post('/task/task',{
+    api.post('/api/task/task',{
       "email" : this.props.value.user_email,
       "title" : this.state.taskName,
       "budget" : this.state.taskMoney,

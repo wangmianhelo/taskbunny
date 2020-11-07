@@ -53,7 +53,7 @@ class Account extends React.Component{
             const email = this.props.value.user_email
             data.append('file', this.state.avatar)
             console.log()
-            api.post(`/upload/${email}`, data).then(res =>{
+            api.post(`/api/upload/${email}`, data).then(res =>{
                 this.setState({
                     imgUrl: res.data.avatar
                 },()=>{this.props.value.setUser(email,res.data.avatar)})
@@ -80,7 +80,7 @@ class Account extends React.Component{
     componentWillReceiveProps(newprops){
         const email = newprops.value.user_email
         console.log(newprops.value)
-        api.get(`/user/info/${email}`).then((res) =>{
+        api.get(`/api/user/info/${email}`).then((res) =>{
             console.log(this.state.firstName)
            
                 this.setState({
@@ -117,7 +117,7 @@ class Account extends React.Component{
 
     updateInfo(){
         const {firstName, lastName,phoneNumber,location,email} = this.state
-        api.put('user/profile',
+        api.put('/api/user/profile',
         {
             "firstName": firstName,
             "lastName": lastName,

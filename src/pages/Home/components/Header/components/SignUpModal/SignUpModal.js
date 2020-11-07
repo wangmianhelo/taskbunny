@@ -135,7 +135,7 @@ class SignUpModal extends React.Component {
       return;
     }
     //调用后端接口，实现注册功能
-    api.post('/user/signUp',{
+    api.post('/api/user/signUp',{
       'email' : formData.email.value,
       'password' : formData.password.value
     }).then((res) =>{

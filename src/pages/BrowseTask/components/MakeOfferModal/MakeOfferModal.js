@@ -129,7 +129,7 @@ const SubmitButton = styled.button`
 
 const submitTask = async (task, price, onClose, handleRefresh) => {
   try {
-    const response = await api.post(`task/offers/${task._id}`, {email:task.email, budget:price});
+    const response = await api.post(`/api/task/offers/${task._id}`, {email:task.email, budget:price});
     onClose();
     handleRefresh();
     console.log(response);

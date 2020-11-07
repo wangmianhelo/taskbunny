@@ -50,7 +50,7 @@ class Notification extends Component {
     }
     componentDidUpdate(){
         let user = this.props.value;
-        api.post('/notification/all',{
+        api.post('/api/notification/all',{
             'email' : user.user_email
         }).then(res=>{
             if(res.data.desc == 'succ'){

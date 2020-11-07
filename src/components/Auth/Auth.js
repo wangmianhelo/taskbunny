@@ -28,7 +28,7 @@ class Auth extends React.Component{
   componentWillMount(){
 
        if(localStorage.getItem('AUTH_TOKEN')){
-        axios.post('/user/Auth',{"token":localStorage.getItem('AUTH_TOKEN')}).then((res) =>{
+        axios.post('/api/user/Auth',{"token":localStorage.getItem('AUTH_TOKEN')}).then((res) =>{
             this.setState({
               user_email: res.data.email,
               user_avatar: res.data.avatar,

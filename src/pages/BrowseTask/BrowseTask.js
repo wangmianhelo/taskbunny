@@ -51,7 +51,7 @@ class BrowseTask extends React.Component {
 
   async getTask () {
     try {
-      const response = await api.get('/task/tasks');
+      const response = await api.get('/api/task/tasks');
       console.log(response);
       this.setState({
         ...this.state,

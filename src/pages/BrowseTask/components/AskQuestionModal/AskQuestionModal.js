@@ -93,7 +93,7 @@ const SubmitButton = styled.button`
 
 const submitQuestion = async (task, email, content, onClose, handleRefresh) => {
   try {
-    const response = await api.post(`task/questions/${task._id}`, {email:email, content:content});
+    const response = await api.post(`/api/task/questions/${task._id}`, {email:email, content:content});
     onClose();
     handleRefresh();
     console.log(response);
